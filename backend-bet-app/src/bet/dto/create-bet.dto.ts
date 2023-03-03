@@ -3,10 +3,10 @@ import { IsDate, IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateBetDto {
   @IsNotEmpty()
-  user: User;
+  userId: string;
 
   @IsNotEmpty()
-  match: Match;
+  matchId: string;
 
   @IsNotEmpty()
   @IsEnum({
@@ -25,6 +25,5 @@ export class CreateBetDto {
   score_2: number;
 
   @IsNotEmpty()
-  @IsDate()
   date: Date;
 }
