@@ -1,5 +1,4 @@
-import { Match, User } from '@prisma/client';
-import { IsDate, IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateBetDto {
   @IsNotEmpty()
