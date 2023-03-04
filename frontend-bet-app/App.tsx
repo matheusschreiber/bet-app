@@ -1,20 +1,26 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { HomeBar } from "./src/components/HomeBar";
+import { ContextProvider } from "./src/services/contextElement";
+import { THEME } from "./src/theme";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ContextProvider>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+
+        <HomeBar />
+      </View>
+    </ContextProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: THEME.COLORS.LIGHT_GRAY,
     alignItems: "center",
     justifyContent: "center",
   },
