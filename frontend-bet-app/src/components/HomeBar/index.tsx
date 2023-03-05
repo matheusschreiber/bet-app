@@ -1,28 +1,41 @@
-import { View, Image, TouchableOpacity } from "react-native";
-
+import { View, Image, TouchableOpacity, Text } from "react-native";
+import { useContextValue } from "../../services/contextElement";
+import {
+  House,
+  PlusCircle,
+  SoccerBall,
+  Trophy,
+  User,
+} from "phosphor-react-native";
 import { styles } from "./styles";
 
-import homeImg from "../../assets/icons/home.png";
-import rankingImg from "../../assets/icons/ranking.png";
-import addImg from "../../assets/icons/add.png";
-import gamesImg from "../../assets/icons/games.png";
-import accountImg from "../../assets/icons/account.png";
-import { useContextValue } from "../../services/contextElement";
+import { THEME } from "../../theme";
 
 export function HomeBar() {
-  const { setSelected } = useContextValue();
+  const { selected, setSelected } = useContextValue();
 
-  const icons = [homeImg, rankingImg, addImg, gamesImg, accountImg];
+  const icons = [
+    <House color="#fff" size={35} />,
+    <Trophy color="#fff" size={35} />,
+    <PlusCircle color="#fff" size={50} weight="fill" />,
+    <SoccerBall color="#fff" size={35} weight="fill" />,
+    <User color="#fff" size={35} />,
+  ];
+
+  function checkSelected(item: JSX.Element, idx: number) {
+    if (selected == idx) item.props.color = `${THEME.COLORS.GREEN}`;
+    return item;
+  }
 
   return (
     <View style={styles.container}>
       {icons?.map((item, idx) => (
         <TouchableOpacity
           key={idx}
-          style={styles.imageContainer}
+          style={styles.iconContainer}
           onPress={() => setSelected(idx)}
         >
-          <Image source={item} style={styles.icon} />
+          {checkSelected(item, idx)}
         </TouchableOpacity>
       ))}
     </View>
