@@ -1,18 +1,15 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import { HomeBar } from "./src/components/HomeBar";
+import { StyleSheet, Text, View } from "react-native";
 import { ContextProvider } from "./src/services/contextElement";
 import { THEME } from "./src/theme";
+import { Routes } from "./src/routes";
 
 export default function App() {
   return (
     <ContextProvider>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-
-        <HomeBar />
-      </View>
+      <StatusBar style="auto" />
+      <Routes />
     </ContextProvider>
   );
 }

@@ -3,10 +3,10 @@ import { HomeBar } from "../../components/HomeBar";
 
 import { styles } from "./style";
 
-export function Home() {
+export function Rankings() {
   return (
     <View style={styles.container}>
-      <Text>HOMEPAGE</Text>
+      <Text>RANKINGS PAGE</Text>
 
       <HomeBar />
     </View>
