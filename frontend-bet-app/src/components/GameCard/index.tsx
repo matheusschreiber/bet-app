@@ -32,6 +32,8 @@ export function GameCard({
 
   return (
     <View style={styles.mainContainer}>
+      {desc && <Text style={styles.descText}>{desc}</Text>}
+
       <View style={styles.iconsContainer}>
         <View style={styles.teamContainer}>
           <Text style={styles.iconText}>{team1Icon}</Text>

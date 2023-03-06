@@ -8,6 +8,17 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     marginLeft: 20,
   },
+  descText: {
+    backgroundColor: "black",
+    borderRadius: 100,
+    color: "white",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    alignSelf: "flex-start",
+    marginLeft: 10,
+    marginTop: 10,
+    marginBottom: -10,
+  },
   iconsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
