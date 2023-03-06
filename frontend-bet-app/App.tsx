@@ -1,11 +1,18 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import { ContextProvider } from "./src/services/contextElement";
-import { THEME } from "./src/theme";
 import { Routes } from "./src/routes";
+import { useFonts } from "expo-font";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    montserrat: require("./assets/fonts/Montserrat-Regular.ttf"),
+    montserratMedium: require("./assets/fonts/Montserrat-Medium.ttf"),
+    montserratLight: require("./assets/fonts/Montserrat-Light.ttf"),
+    montserratBold: require("./assets/fonts/Montserrat-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) return null;
   return (
     <ContextProvider>
       <StatusBar style="auto" />
@@ -13,12 +20,3 @@ export default function App() {
     </ContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    backgroundColor: THEME.COLORS.LIGHT_GRAY,
-    // alignItems: "center",
-    // justifyContent: "center",
-  },
-});
