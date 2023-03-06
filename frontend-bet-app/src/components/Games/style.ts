@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   gamesTitle: {
     fontSize: 20,
-    fontFamily: "montserratMedium",
+    fontFamily: "montserratBold",
   },
   detailsContainer: {
     flexDirection: "row",
