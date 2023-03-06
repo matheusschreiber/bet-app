@@ -22,10 +22,13 @@ export const styles = StyleSheet.create({
   iconsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
     padding: 20,
     borderBottomWidth: 1,
     borderBottomColor: THEME.COLORS.LIGHT_GRAY,
+  },
+  teamScoreText: {
+    fontSize: 50,
+    fontFamily: "montserratLight",
   },
   teamContainer: {
     alignItems: "center",
@@ -38,6 +41,8 @@ export const styles = StyleSheet.create({
   },
   vsText: {
     backgroundColor: THEME.COLORS.NEUTRAL_GRAY,
+    height: 30,
+    marginTop: 20,
     padding: 5,
     borderRadius: 20,
   },

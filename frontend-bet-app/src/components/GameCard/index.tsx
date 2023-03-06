@@ -1,26 +1,30 @@
-import { Image, Text, View } from "react-native";
-
+import { Image, View } from "react-native";
 import { styles } from "./style";
 
 import calendarIcon from "../../../assets/icons/calendar.png";
 import clockIcon from "../../../assets/icons/clock.png";
 import ticketIcon from "../../../assets/icons/ticket.png";
+import { MyText } from "../MyText";
 
 interface GameProps {
   team1: string;
   team1Icon: string;
+  team1Score?: number;
   team2: string;
   team2Icon: string;
+  team2Score?: number;
   date: Date;
   amount: string;
-  desc: string;
+  desc?: string;
 }
 
 export function GameCard({
   team1,
   team1Icon,
+  team1Score,
   team2,
   team2Icon,
+  team2Score,
   date,
   amount,
   desc,
@@ -32,42 +36,52 @@ export function GameCard({
 
   return (
     <View style={styles.mainContainer}>
-      {desc && <Text style={styles.descText}>{desc}</Text>}
+      {desc && <MyText style={styles.descText}>{desc}</MyText>}
 
       <View style={styles.iconsContainer}>
         <View style={styles.teamContainer}>
-          <Text style={styles.iconText}>{team1Icon}</Text>
-          <Text>{team1}</Text>
+          <MyText style={styles.iconText}>{team1Icon}</MyText>
+          <MyText>{team1}</MyText>
+          {team1Score && team2Score && (
+            <MyText style={styles.teamScoreText}>{team1Score}</MyText>
+          )}
         </View>
 
-        <Text style={styles.vsText}>VS</Text>
+        <MyText style={styles.vsText}>VS</MyText>
 
         <View style={styles.teamContainer}>
-          <Text style={styles.iconText}>{team2Icon}</Text>
-          <Text>{team2}</Text>
+          <MyText style={styles.iconText}>{team2Icon}</MyText>
+          <MyText>{team2}</MyText>
+          {team1Score && team2Score && (
+            <MyText style={styles.teamScoreText}>{team2Score}</MyText>
+          )}
         </View>
       </View>
 
       <View style={styles.infoContainer}>
         <Image source={calendarIcon} />
-        <Text style={styles.infoText}>
+        <MyText style={styles.infoText}>
           {leadingZeros(date.getDay())}{" "}
           {date
             .toLocaleString("default", { month: "long" })
             .charAt(0)
             .toUpperCase() +
             date.toLocaleString("default", { month: "long" }).slice(1)}
-        </Text>
-        <Image source={clockIcon} />
-        <Text style={styles.infoText}>
-          {leadingZeros(date.getHours())}:{leadingZeros(date.getMinutes())}
-        </Text>
+        </MyText>
+        {!team1Score && !team2Score && <Image source={clockIcon} />}
+        {!team1Score && !team2Score && (
+          <MyText style={styles.infoText}>
+            {leadingZeros(date.getHours())}:{leadingZeros(date.getMinutes())}
+          </MyText>
+        )}
       </View>
 
-      <View style={styles.amountContainer}>
-        <Image source={ticketIcon} />
-        <Text style={styles.amountText}>{amount}</Text>
-      </View>
+      {!team1Score && !team2Score && (
+        <View style={styles.amountContainer}>
+          <Image source={ticketIcon} />
+          <MyText style={styles.amountText}>{amount}</MyText>
+        </View>
+      )}
     </View>
   );
 }
