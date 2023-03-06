@@ -9,16 +9,16 @@ import { useContextValue } from "../../services/contextElement";
 // } from "phosphor-react-native";
 import { styles } from "./styles";
 
-import home from "../../assets/icons/home.png";
-import rankings from "../../assets/icons/rankings.png";
-import add from "../../assets/icons/add.png";
-import games from "../../assets/icons/games.png";
-import account from "../../assets/icons/account.png";
+import home from "../../../assets/icons/home.png";
+import rankings from "../../../assets/icons/rankings.png";
+import add from "../../../assets/icons/add.png";
+import games from "../../../assets/icons/games.png";
+import account from "../../../assets/icons/account.png";
 
-import homeSelected from "../../assets/icons/home_selected.png";
-import rankingsSelected from "../../assets/icons/rankings_selected.png";
-import gamesSelected from "../../assets/icons/games_selected.png";
-import accountSelected from "../../assets/icons/account_selected.png";
+import homeSelected from "../../../assets/icons/home_selected.png";
+import rankingsSelected from "../../../assets/icons/rankings_selected.png";
+import gamesSelected from "../../../assets/icons/games_selected.png";
+import accountSelected from "../../../assets/icons/account_selected.png";
 
 import { THEME } from "../../theme";
 import { useNavigation } from "@react-navigation/native";
@@ -60,19 +60,20 @@ export function HomeBar() {
   ];
 
   return (
-    <View style={styles.container}>
-      {icons?.map((item, idx) => (
-        <TouchableOpacity
-          key={idx}
-          style={styles.iconContainer}
-          onPress={() => {
-            setSelected(idx);
-            navigation.navigate(item.page as any);
-          }}
-        >
-          <Image source={checkSelected(item, idx)} />
-        </TouchableOpacity>
-      ))}
+    <View style={styles.topContainer}>
+      <View style={styles.container}>
+        {icons?.map((item, idx) => (
+          <TouchableOpacity
+            key={idx}
+            onPress={() => {
+              setSelected(idx);
+              navigation.navigate(item.page as any);
+            }}
+          >
+            <Image source={checkSelected(item, idx)} />
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
   );
 }
