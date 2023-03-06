@@ -1,8 +1,7 @@
 import { Image, Text, View } from "react-native";
+import { GroupCard } from "../GroupCard";
 
 import { styles } from "./style";
-
-import rightArrow from "../../../assets/icons/right_arrow.png";
 import teste2 from "../../../assets/teste2.jpg";
 import teste3 from "../../../assets/teste3.jpg";
 import teste4 from "../../../assets/teste4.jpg";
@@ -14,90 +13,23 @@ export function Groups() {
     <View style={styles.groupsContainer}>
       <Text style={styles.title}>Meus grupos de aposta</Text>
 
-      <View style={styles.groupContainer}>
-        <View style={styles.groupCard}>
-          <View>
-            <Text style={styles.groupTitle}>Amigos do trabalho</Text>
-            <View style={styles.groupImages}>
-              <Image source={teste2} style={styles.groupImage} />
-              <Image source={teste3} style={styles.groupImage} />
-              <Image source={teste4} style={styles.groupImage} />
-              <Image source={teste5} style={styles.groupImage} />
-              <Image source={teste6} style={styles.groupImage} />
-            </View>
-            <Text>5 pessoas</Text>
-          </View>
-          <Image source={rightArrow} />
-        </View>
-      </View>
+      <GroupCard
+        name="Amigos do trabalho"
+        participants={[teste2, teste3, teste4, teste5, teste6]}
+        amount="5 pessoas"
+      />
 
-      <View style={styles.groupContainer}>
-        <View style={styles.groupCard}>
-          <View>
-            <Text style={styles.groupTitle}>Família</Text>
-            <View style={styles.groupImages}>
-              <Image source={teste2} style={styles.groupImage} />
-              <Image source={teste3} style={styles.groupImage} />
-              <Image source={teste4} style={styles.groupImage} />
-              <Image source={teste5} style={styles.groupImage} />
-              <Image source={teste6} style={styles.groupImage} />
-            </View>
-            <Text style={styles.subtitle}>5 pessoas</Text>
-          </View>
-          <Image source={rightArrow} />
-        </View>
-      </View>
+      <GroupCard
+        name="Família"
+        participants={[teste2, teste3, teste4, teste5, teste6]}
+        amount="5 pessoas"
+      />
 
-      <View style={styles.groupContainer}>
-        <View style={styles.groupCard}>
-          <View>
-            <Text style={styles.groupTitle}>Família</Text>
-            <View style={styles.groupImages}>
-              <Image source={teste2} style={styles.groupImage} />
-              <Image source={teste3} style={styles.groupImage} />
-              <Image source={teste4} style={styles.groupImage} />
-              <Image source={teste5} style={styles.groupImage} />
-              <Image source={teste6} style={styles.groupImage} />
-            </View>
-            <Text style={styles.subtitle}>5 pessoas</Text>
-          </View>
-          <Image source={rightArrow} />
-        </View>
-      </View>
-
-      <View style={styles.groupContainer}>
-        <View style={styles.groupCard}>
-          <View>
-            <Text style={styles.groupTitle}>Família</Text>
-            <View style={styles.groupImages}>
-              <Image source={teste2} style={styles.groupImage} />
-              <Image source={teste3} style={styles.groupImage} />
-              <Image source={teste4} style={styles.groupImage} />
-              <Image source={teste5} style={styles.groupImage} />
-              <Image source={teste6} style={styles.groupImage} />
-            </View>
-            <Text style={styles.subtitle}>5 pessoas</Text>
-          </View>
-          <Image source={rightArrow} />
-        </View>
-      </View>
-
-      <View style={styles.groupContainer}>
-        <View style={styles.groupCard}>
-          <View>
-            <Text style={styles.groupTitle}>Família</Text>
-            <View style={styles.groupImages}>
-              <Image source={teste2} style={styles.groupImage} />
-              <Image source={teste3} style={styles.groupImage} />
-              <Image source={teste4} style={styles.groupImage} />
-              <Image source={teste5} style={styles.groupImage} />
-              <Image source={teste6} style={styles.groupImage} />
-            </View>
-            <Text style={styles.subtitle}>5 pessoas</Text>
-          </View>
-          <Image source={rightArrow} />
-        </View>
-      </View>
+      <GroupCard
+        name="Bairro"
+        participants={[teste2, teste3, teste4, teste5, teste6]}
+        amount="5 pessoas"
+      />
     </View>
   );
 }
