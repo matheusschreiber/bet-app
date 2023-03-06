@@ -42,31 +42,8 @@ export const styles = StyleSheet.create({
   },
   profileName: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: "montserratMedium",
     color: "white",
     marginTop: 10,
-  },
-  statisticsContainer: {
-    marginTop: 20,
-    width: "90%",
-    borderRadius: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: "white",
-    overflow: "hidden",
-    elevation: 5,
-  },
-  statisticsItem: {
-    padding: 20,
-    borderRightWidth: 0.5,
-    borderColor: THEME.COLORS.GRAY,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  subtitle: {
-    color: THEME.COLORS.DARK_GRAY,
-    fontWeight: "bold",
   },
 });
