@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   groupTitle: {
     fontSize: 20,
     marginBottom: 10,
-    fontWeight: "500",
+    fontFamily: "montserratMedium",
   },
   groupImage: {
     width: 40,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
   },
   groupSubTitle: {
     marginTop: 10,
-    fontWeight: "bold",
     color: THEME.COLORS.DARK_GRAY,
+    fontFamily: "montserratBold",
   },
 });

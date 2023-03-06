@@ -1,7 +1,8 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import { styles } from "./style";
 
 import rightArrow from "../../../assets/icons/right_arrow.png";
+import { MyText } from "../MyText";
 
 interface GroupProps {
   name: string;
@@ -15,13 +16,13 @@ export function GroupCard({ name, participants, amount }: GroupProps) {
       <View style={styles.groupContainer}>
         <View style={styles.groupCard}>
           <View>
-            <Text style={styles.groupTitle}>{name}</Text>
+            <MyText style={styles.groupTitle}>{name}</MyText>
             <View style={styles.groupImages}>
-              {participants?.map((imagedata) => (
-                <Image source={imagedata} style={styles.groupImage} />
+              {participants?.map((imagedata, idx) => (
+                <Image key={idx} source={imagedata} style={styles.groupImage} />
               ))}
             </View>
-            <Text style={styles.groupSubTitle}>{amount}</Text>
+            <MyText style={styles.groupSubTitle}>{amount}</MyText>
           </View>
           <Image source={rightArrow} />
         </View>

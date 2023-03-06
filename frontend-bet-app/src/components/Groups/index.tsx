@@ -1,4 +1,4 @@
-import { Image, Text, View } from "react-native";
+import { View } from "react-native";
 import { GroupCard } from "../GroupCard";
 
 import { styles } from "./style";
@@ -7,11 +7,12 @@ import teste3 from "../../../assets/teste3.jpg";
 import teste4 from "../../../assets/teste4.jpg";
 import teste5 from "../../../assets/teste5.jpg";
 import teste6 from "../../../assets/teste6.jpg";
+import { MyText } from "../MyText";
 
 export function Groups() {
   return (
     <View style={styles.groupsContainer}>
-      <Text style={styles.title}>Meus grupos de aposta</Text>
+      <MyText style={styles.title}>Meus grupos de aposta</MyText>
 
       <GroupCard
         name="Amigos do trabalho"
