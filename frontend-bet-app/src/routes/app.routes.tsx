@@ -5,6 +5,7 @@ import { Games } from "../screens/Games";
 import { Home } from "../screens/Home";
 import { Account } from "../screens/Account";
 import { Rankings } from "../screens/Rankings";
+import { GameBet } from "../screens/GameBet";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ export function AppRoutes() {
       <Screen name="games" component={Games} />
       <Screen name="account" component={Account} />
       <Screen name="add" component={Add} />
+      <Screen name="gamebet" component={GameBet} />
     </Navigator>
   );
 }

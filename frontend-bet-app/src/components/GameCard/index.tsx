@@ -1,21 +1,16 @@
-import { Image, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import { styles } from "./style";
 
 import calendarIcon from "../../../assets/icons/calendar.png";
-import clockIcon from "../../../assets/icons/clock.png";
 import ticketIcon from "../../../assets/icons/ticket.png";
+import clockIcon from "../../../assets/icons/clock.png";
+import { useNavigation } from "@react-navigation/native";
 import { MyText } from "../MyText";
+import { GameProps } from "../../@types/navigation";
 
-interface GameProps {
-  team1: string;
-  team1Icon: string;
-  team1Score?: number;
-  team2: string;
-  team2Icon: string;
-  team2Score?: number;
-  date: Date;
-  amount: string;
-  desc?: string;
+export function leadingZeros(num: number) {
+  if (num < 10) return "0" + num;
+  else return num;
 }
 
 export function GameCard({
@@ -29,13 +24,25 @@ export function GameCard({
   amount,
   desc,
 }: GameProps) {
-  function leadingZeros(num: number) {
-    if (num < 10) return "0" + num;
-    else return num;
-  }
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.mainContainer}>
+    <TouchableOpacity
+      style={styles.mainContainer}
+      onPress={() => {
+        navigation.navigate("gamebet", {
+          team1,
+          team1Icon,
+          team1Score,
+          team2,
+          team2Icon,
+          team2Score,
+          date,
+          amount,
+          desc,
+        });
+      }}
+    >
       {desc && <MyText style={styles.descText}>{desc}</MyText>}
 
       <View style={styles.iconsContainer}>
@@ -82,6 +89,6 @@ export function GameCard({
           <MyText style={styles.amountText}>{amount}</MyText>
         </View>
       )}
-    </View>
+    </TouchableOpacity>
   );
 }
