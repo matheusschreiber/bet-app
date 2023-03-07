@@ -10,6 +10,7 @@ import calendarIcon from "../../../assets/icons/calendar.png";
 import ticketIcon from "../../../assets/icons/ticket.png";
 import clockIcon from "../../../assets/icons/clock.png";
 import ticketLarge from "../../../assets/icons/ticket_large.png";
+import { BetPanel } from "../../components/BetPanel";
 
 export function GameBet() {
   const router = useRoute();
@@ -18,6 +19,7 @@ export function GameBet() {
 
   return (
     <View style={styles.container}>
+      <BetPanel {...game} />
       <Image source={gameBackground} style={styles.backgroundImage} />
       <TouchableOpacity
         style={styles.backArrowContainer}
