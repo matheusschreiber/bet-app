@@ -46,20 +46,22 @@ export function GameBet() {
         <View style={styles.subtitleContainer}>
           <Image source={calendarIcon} />
           <Text style={styles.subtitle}>
-            {leadingZeros(game.date.getDay())}{" "}
-            {game.date
+            {leadingZeros(new Date(game.date).getDay())}{" "}
+            {new Date(game.date)
               .toLocaleString("default", { month: "long" })
               .charAt(0)
               .toUpperCase() +
-              game.date.toLocaleString("default", { month: "long" }).slice(1)}
+              new Date(game.date)
+                .toLocaleString("default", { month: "long" })
+                .slice(1)}
           </Text>
         </View>
 
         <View style={styles.subtitleContainer}>
           <Image source={clockIcon} />
           <Text style={styles.subtitle}>
-            {leadingZeros(game.date.getHours())}:
-            {leadingZeros(game.date.getMinutes())}
+            {leadingZeros(new Date(game.date).getHours())}:
+            {leadingZeros(new Date(game.date).getMinutes())}
           </Text>
         </View>
 

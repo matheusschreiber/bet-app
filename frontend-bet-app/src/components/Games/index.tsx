@@ -14,7 +14,7 @@ export function Games() {
     let teste1 = [
       <GameCard
         amount="250 apostas para este jogo"
-        date={new Date("2023-06-06T12:00:00.000Z")}
+        date={"2023-06-06T12:00:00.000Z"}
         desc="SEMI-FINAL"
         team1="Brasil"
         team1Icon="🇧🇷"
@@ -31,7 +31,7 @@ export function Games() {
     let teste2 = [
       <GameCard
         amount="250 apostas para este jogo"
-        date={new Date("2023-06-06T12:00:00.000Z")}
+        date={"2023-06-06T12:00:00.000Z"}
         desc="SEMI-FINAL"
         team1="Brasil"
         team1Icon="🇧🇷"

@@ -7,7 +7,7 @@ export interface GameProps {
   team2: string;
   team2Icon: string;
   team2Score?: number;
-  date: Date;
+  date: string;
   amount: string;
   desc?: string;
 }

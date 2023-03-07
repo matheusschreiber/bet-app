@@ -68,17 +68,20 @@ export function GameCard({
       <View style={styles.infoContainer}>
         <Image source={calendarIcon} />
         <MyText style={styles.infoText}>
-          {leadingZeros(date.getDay())}{" "}
-          {date
+          {leadingZeros(new Date(date).getDay())}{" "}
+          {new Date(date)
             .toLocaleString("default", { month: "long" })
             .charAt(0)
             .toUpperCase() +
-            date.toLocaleString("default", { month: "long" }).slice(1)}
+            new Date(date)
+              .toLocaleString("default", { month: "long" })
+              .slice(1)}
         </MyText>
         {!team1Score && !team2Score && <Image source={clockIcon} />}
         {!team1Score && !team2Score && (
           <MyText style={styles.infoText}>
-            {leadingZeros(date.getHours())}:{leadingZeros(date.getMinutes())}
+            {leadingZeros(new Date(date).getHours())}:
+            {leadingZeros(new Date(date).getMinutes())}
           </MyText>
         )}
       </View>
