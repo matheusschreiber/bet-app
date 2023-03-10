@@ -3,23 +3,41 @@ import { styles } from "./style";
 
 import rightArrow from "../../../assets/icons/right_arrow.png";
 import { MyText } from "../MyText";
+import { useNavigation } from "@react-navigation/native";
+import { User } from "../../@types/navigation";
 
-interface GroupProps {
+interface GroupCard {
   name: string;
-  participants: ImageData[];
+  participants: User[];
   amount: string;
 }
 
-export function GroupCard({ name, participants, amount }: GroupProps) {
+export function GroupCard({ name, participants, amount }: GroupCard) {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("group", {
+          id: 1,
+          id_admin: 2,
+          name,
+          participants,
+          prize: "R$ 500 no pix",
+        });
+      }}
+    >
       <View style={styles.groupContainer}>
         <View style={styles.groupCard}>
           <View>
             <MyText style={styles.groupTitle}>{name}</MyText>
             <View style={styles.groupImages}>
-              {participants?.map((imagedata, idx) => (
-                <Image key={idx} source={imagedata} style={styles.groupImage} />
+              {participants?.map((user, idx) => (
+                <Image
+                  key={idx}
+                  source={user.picture}
+                  style={styles.groupImage}
+                />
               ))}
             </View>
             <MyText style={styles.groupSubTitle}>{amount}</MyText>

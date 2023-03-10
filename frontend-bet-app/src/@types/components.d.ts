@@ -5,3 +5,4 @@ declare module "../components/GameCard";
 declare module "../components/MyText";
 declare module "../components/Statistics";
 declare module "../components/BetPanel";
+declare module "../components/PlayerList";

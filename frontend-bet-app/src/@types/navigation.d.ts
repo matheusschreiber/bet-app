@@ -12,6 +12,21 @@ export interface GameProps {
   desc?: string;
 }
 
+export interface User {
+  id: number;
+  name: string;
+  picture: ImageData;
+  points: number;
+}
+
+export interface GroupProps {
+  id: number;
+  id_admin: number;
+  name: string;
+  prize?: string;
+  participants: User[];
+}
+
 export declare global {
   namespace ReactNavigation {
     interface RootParamList {
@@ -21,6 +36,7 @@ export declare global {
       add: undefined;
       rankings: undefined;
       gamebet: GameProps;
+      group: GroupProps;
     }
   }
 }

@@ -63,7 +63,11 @@ export function Games() {
         </TouchableOpacity>
       </View>
 
-      <ScrollView horizontal={true}>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         {games.map((game, idx) => {
           game.key = idx;
           return game;
@@ -80,7 +84,11 @@ export function Games() {
         </TouchableOpacity>
       </View>
 
-      <ScrollView horizontal={true}>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         {results.map((game, idx) => {
           game.key = idx;
           return game;

@@ -6,6 +6,7 @@ import { Home } from "../screens/Home";
 import { Account } from "../screens/Account";
 import { Rankings } from "../screens/Rankings";
 import { GameBet } from "../screens/GameBet";
+import { Group } from "../screens/Group";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export function AppRoutes() {
       <Screen name="account" component={Account} />
       <Screen name="add" component={Add} />
       <Screen name="gamebet" component={GameBet} />
+      <Screen name="group" component={Group} />
     </Navigator>
   );
 }
