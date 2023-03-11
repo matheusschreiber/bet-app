@@ -49,4 +49,5 @@ export function PlusButton() {
         </View>
       </TouchableOpacity>
     );
+  else return <></>;
 }
