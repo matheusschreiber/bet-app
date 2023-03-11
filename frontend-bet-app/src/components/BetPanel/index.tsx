@@ -1,4 +1,4 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import { GameProps } from "../../@types/navigation";
 
 import { styles } from "./style";
@@ -8,6 +8,7 @@ import ticketIcon from "../../../assets/icons/ticket.png";
 import clockIcon from "../../../assets/icons/clock.png";
 import closeIcon from "../../../assets/icons/close.png";
 import { leadingZeros } from "../GameCard";
+import { MyText } from "../MyText";
 
 export function BetPanel({
   team1,
@@ -25,26 +26,26 @@ export function BetPanel({
             <Image source={closeIcon} style={styles.closeIcon} />
           </TouchableOpacity>
         </View>
-        <Text style={styles.newBetTitle}>Nova aposta</Text>
+        <MyText style={styles.newBetTitle}>Nova aposta</MyText>
 
         <View style={styles.teamsContainer}>
           <View style={styles.teamContainer}>
-            <Text style={styles.iconContainer}>{team1Icon}</Text>
-            <Text style={styles.teamName}>{team1}</Text>
+            <MyText style={styles.iconContainer}>{team1Icon}</MyText>
+            <MyText style={styles.teamName}>{team1}</MyText>
           </View>
 
-          <Text style={styles.vsText}>VS</Text>
+          <MyText style={styles.vsText}>VS</MyText>
 
           <View style={styles.teamContainer}>
-            <Text style={styles.iconContainer}>{team2Icon}</Text>
-            <Text style={styles.teamName}>{team2}</Text>
+            <MyText style={styles.iconContainer}>{team2Icon}</MyText>
+            <MyText style={styles.teamName}>{team2}</MyText>
           </View>
         </View>
 
         <View style={styles.infoContainer}>
           <View style={styles.subtitleContainer}>
             <Image source={calendarIcon} />
-            <Text style={styles.subtitle}>
+            <MyText style={styles.subtitle}>
               {leadingZeros(new Date(date).getDay())}{" "}
               {new Date(date)
                 .toLocaleString("default", { month: "long" })
@@ -53,62 +54,62 @@ export function BetPanel({
                 new Date(date)
                   .toLocaleString("default", { month: "long" })
                   .slice(1)}
-            </Text>
+            </MyText>
           </View>
 
           <View style={styles.subtitleContainer}>
             <Image source={clockIcon} />
-            <Text style={styles.subtitle}>
+            <MyText style={styles.subtitle}>
               {leadingZeros(new Date(date).getHours())}:
               {leadingZeros(new Date(date).getMinutes())}
-            </Text>
+            </MyText>
           </View>
 
           <View style={styles.subtitleContainer}>
             <Image source={ticketIcon} />
-            <Text style={styles.subtitle}>{amount}</Text>
+            <MyText style={styles.subtitle}>{amount}</MyText>
           </View>
         </View>
       </View>
 
-      <Text style={styles.titleBet}>Defina o placar final</Text>
+      <MyText style={styles.titleBet}>Defina o placar final</MyText>
 
       <View style={styles.betContainer}>
         <View style={styles.betTeamContainer}>
-          <Text style={styles.betIconContainer}>{team1Icon}</Text>
-          <Text style={styles.betTeamName}>{team1}</Text>
+          <MyText style={styles.betIconContainer}>{team1Icon}</MyText>
+          <MyText style={styles.betTeamName}>{team1}</MyText>
         </View>
 
         <View style={styles.slidersContainer}>
           <TouchableOpacity>
-            <Text style={styles.sliderButton}>-</Text>
+            <MyText style={styles.sliderButton}>-</MyText>
           </TouchableOpacity>
-          <Text style={styles.goalsCounter}>0</Text>
+          <MyText style={styles.goalsCounter}>0</MyText>
           <TouchableOpacity>
-            <Text style={styles.sliderButton}>+</Text>
+            <MyText style={styles.sliderButton}>+</MyText>
           </TouchableOpacity>
         </View>
       </View>
 
       <View style={styles.betContainer}>
         <View style={styles.betTeamContainer}>
-          <Text style={styles.betIconContainer}>{team2Icon}</Text>
-          <Text style={styles.betTeamName}>{team2}</Text>
+          <MyText style={styles.betIconContainer}>{team2Icon}</MyText>
+          <MyText style={styles.betTeamName}>{team2}</MyText>
         </View>
 
         <View style={styles.slidersContainer}>
           <TouchableOpacity>
-            <Text style={styles.sliderButton}>-</Text>
+            <MyText style={styles.sliderButton}>-</MyText>
           </TouchableOpacity>
-          <Text style={styles.goalsCounter}>0</Text>
+          <MyText style={styles.goalsCounter}>0</MyText>
           <TouchableOpacity>
-            <Text style={styles.sliderButton}>+</Text>
+            <MyText style={styles.sliderButton}>+</MyText>
           </TouchableOpacity>
         </View>
       </View>
 
       <TouchableOpacity>
-        <Text style={styles.concludeBet}>Concluir Aposta</Text>
+        <MyText style={styles.concludeBet}>Concluir Aposta</MyText>
       </TouchableOpacity>
     </View>
   );

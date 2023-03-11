@@ -1,5 +1,6 @@
-import { FlatList, ScrollView, Text, View } from "react-native";
+import { FlatList, ScrollView, View } from "react-native";
 import { User } from "../../@types/navigation";
+import { MyText } from "../MyText";
 
 interface PlayerListProps {
   participants: User[];
@@ -10,9 +11,9 @@ export function PlayerList({ participants }: PlayerListProps) {
     <ScrollView horizontal={true}>
       <View>
         <View>
-          <Text>NOME</Text>
-          <Text>ACERTOS</Text>
-          <Text>PONTOS</Text>
+          <MyText>NOME</MyText>
+          <MyText>ACERTOS</MyText>
+          <MyText>PONTOS</MyText>
         </View>
 
         <FlatList
@@ -22,8 +23,8 @@ export function PlayerList({ participants }: PlayerListProps) {
           renderItem={({ item }) => (
             <View>
               {/* <Image source={item.picture} /> */}
-              <Text>{item.name}</Text>
-              <Text>{item.points}</Text>
+              <MyText>{item.name}</MyText>
+              <MyText>{item.points}</MyText>
             </View>
           )}
         />

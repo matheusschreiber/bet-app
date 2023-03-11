@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, TouchableOpacity, View } from "react-native";
 import { GameProps } from "../../@types/navigation";
 import { leadingZeros } from "../../components/GameCard";
 import gameBackground from "../../../assets/game_background.png";
@@ -11,6 +11,7 @@ import ticketIcon from "../../../assets/icons/ticket.png";
 import clockIcon from "../../../assets/icons/clock.png";
 import ticketLarge from "../../../assets/icons/ticket_large.png";
 import { BetPanel } from "../../components/BetPanel";
+import { MyText } from "../../components/MyText";
 
 export function GameBet() {
   const router = useRoute();
@@ -30,24 +31,24 @@ export function GameBet() {
 
       <View style={styles.teamsContainer}>
         <View>
-          <Text style={styles.iconContainer}>{game.team1Icon}</Text>
-          <Text style={styles.teamName}>{game.team1}</Text>
+          <MyText style={styles.iconContainer}>{game.team1Icon}</MyText>
+          <MyText style={styles.teamName}>{game.team1}</MyText>
         </View>
 
-        <Text style={styles.vsText}>VS</Text>
+        <MyText style={styles.vsText}>VS</MyText>
 
         <View>
-          <Text style={styles.iconContainer}>{game.team2Icon}</Text>
-          <Text style={styles.teamName}>{game.team2}</Text>
+          <MyText style={styles.iconContainer}>{game.team2Icon}</MyText>
+          <MyText style={styles.teamName}>{game.team2}</MyText>
         </View>
       </View>
 
-      <Text style={styles.descText}>{game.desc}</Text>
+      <MyText style={styles.descText}>{game.desc}</MyText>
 
       <View style={styles.infoContainer}>
         <View style={styles.subtitleContainer}>
           <Image source={calendarIcon} />
-          <Text style={styles.subtitle}>
+          <MyText style={styles.subtitle}>
             {leadingZeros(new Date(game.date).getDay())}{" "}
             {new Date(game.date)
               .toLocaleString("default", { month: "long" })
@@ -56,20 +57,20 @@ export function GameBet() {
               new Date(game.date)
                 .toLocaleString("default", { month: "long" })
                 .slice(1)}
-          </Text>
+          </MyText>
         </View>
 
         <View style={styles.subtitleContainer}>
           <Image source={clockIcon} />
-          <Text style={styles.subtitle}>
+          <MyText style={styles.subtitle}>
             {leadingZeros(new Date(game.date).getHours())}:
             {leadingZeros(new Date(game.date).getMinutes())}
-          </Text>
+          </MyText>
         </View>
 
         <View style={styles.subtitleContainer}>
           <Image source={ticketIcon} />
-          <Text style={styles.subtitle}>{game.amount}</Text>
+          <MyText style={styles.subtitle}>{game.amount}</MyText>
         </View>
       </View>
 
@@ -79,15 +80,15 @@ export function GameBet() {
             <Image source={ticketLarge} style={styles.ticketIconBetArea} />
           </View>
           <View>
-            <Text style={styles.betAreaText}>
+            <MyText style={styles.betAreaText}>
               Você ainda não fez uma aposta para este jogo
-            </Text>
+            </MyText>
             <TouchableOpacity>
-              <Text style={styles.betAreaButton}>Fazer aposta</Text>
+              <MyText style={styles.betAreaButton}>Fazer aposta</MyText>
             </TouchableOpacity>
           </View>
         </View>
-        <Text style={styles.playersTitle}>Escalação</Text>
+        <MyText style={styles.playersTitle}>Escalação</MyText>
       </ScrollView>
     </View>
   );

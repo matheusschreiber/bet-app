@@ -1,12 +1,13 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { HomeBar } from "../../components/HomeBar";
+import { MyText } from "../../components/MyText";
 
 import { styles } from "./style";
 
 export function Add() {
   return (
     <View style={styles.container}>
-      <Text>ADD BET PAGE</Text>
+      <MyText>ADD BET PAGE</MyText>
 
       <HomeBar />
     </View>
