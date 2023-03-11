@@ -174,4 +174,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     resizeMode: "contain",
   },
+  activityIndicator: {
+    marginTop: 30,
+  },
 });

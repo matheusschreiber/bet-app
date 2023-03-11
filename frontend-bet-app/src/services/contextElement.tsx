@@ -3,6 +3,8 @@ import React, { ReactNode, useContext, useEffect, useState } from "react";
 const contextDefaultValues = {
   selected: 0,
   setSelected: (n: number) => {},
+  isBetting: false,
+  setIsBetting: (b: boolean) => {},
 };
 
 export const ContextElement = React.createContext(contextDefaultValues);
@@ -17,10 +19,13 @@ type Props = {
 
 export function ContextProvider({ children }: Props) {
   const [selected, setSelected] = useState<number>(0);
+  const [isBetting, setIsBetting] = useState<boolean>(false);
 
   const value = {
     selected,
     setSelected,
+    isBetting,
+    setIsBetting,
   };
 
   return (

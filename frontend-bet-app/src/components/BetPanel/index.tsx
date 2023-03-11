@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View, ActivityIndicator } from "react-native";
 import { GameProps } from "../../@types/navigation";
 
 import { styles } from "./style";
@@ -9,6 +9,8 @@ import clockIcon from "../../../assets/icons/clock.png";
 import closeIcon from "../../../assets/icons/close.png";
 import { leadingZeros } from "../GameCard";
 import { MyText } from "../MyText";
+import { useContextValue } from "../../services/contextElement";
+import { useState } from "react";
 
 export function BetPanel({
   team1,
@@ -18,11 +20,32 @@ export function BetPanel({
   date,
   amount,
 }: GameProps) {
+  const { setIsBetting } = useContextValue();
+  const [team1Score, setTeam1Score] = useState<number>(0);
+  const [team2Score, setTeam2Score] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  function handleSubtract(value: number, setFunc: Function) {
+    if (value > 0) setFunc(value - 1);
+  }
+
+  function handleAdd(value: number, setFunc: Function) {
+    setFunc(value + 1);
+  }
+
+  async function handleSubmit() {
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 3000);
+  }
+
   return (
-    <View style={styles.mainContainer}>
+    <View style={{ ...styles.mainContainer }}>
       <View style={styles.upperContainer}>
         <View style={styles.closeIconContainer}>
-          <TouchableOpacity style={styles.buttonClose}>
+          <TouchableOpacity
+            style={styles.buttonClose}
+            onPress={() => setIsBetting(false)}
+          >
             <Image source={closeIcon} style={styles.closeIcon} />
           </TouchableOpacity>
         </View>
@@ -81,11 +104,15 @@ export function BetPanel({
         </View>
 
         <View style={styles.slidersContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleSubtract(team1Score, setTeam1Score)}
+          >
             <MyText style={styles.sliderButton}>-</MyText>
           </TouchableOpacity>
-          <MyText style={styles.goalsCounter}>0</MyText>
-          <TouchableOpacity>
+          <MyText style={styles.goalsCounter}>{team1Score}</MyText>
+          <TouchableOpacity
+            onPress={() => handleAdd(team1Score, setTeam1Score)}
+          >
             <MyText style={styles.sliderButton}>+</MyText>
           </TouchableOpacity>
         </View>
@@ -98,18 +125,31 @@ export function BetPanel({
         </View>
 
         <View style={styles.slidersContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleSubtract(team2Score, setTeam2Score)}
+          >
             <MyText style={styles.sliderButton}>-</MyText>
           </TouchableOpacity>
-          <MyText style={styles.goalsCounter}>0</MyText>
-          <TouchableOpacity>
+          <MyText style={styles.goalsCounter}>{team2Score}</MyText>
+          <TouchableOpacity
+            onPress={() => handleAdd(team2Score, setTeam2Score)}
+          >
             <MyText style={styles.sliderButton}>+</MyText>
           </TouchableOpacity>
         </View>
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => handleSubmit()}
+        disabled={isLoading}
+        style={isLoading ? { opacity: 0.4 } : {}}
+      >
         <MyText style={styles.concludeBet}>Concluir Aposta</MyText>
+        <ActivityIndicator
+          style={styles.activityIndicator}
+          animating={isLoading}
+          size="large"
+        />
       </TouchableOpacity>
     </View>
   );

@@ -12,15 +12,19 @@ import clockIcon from "../../../assets/icons/clock.png";
 import ticketLarge from "../../../assets/icons/ticket_large.png";
 import { BetPanel } from "../../components/BetPanel";
 import { MyText } from "../../components/MyText";
+import { useState } from "react";
+import { useContextValue } from "../../services/contextElement";
 
 export function GameBet() {
   const router = useRoute();
   const game = router.params as GameProps;
   const navigation = useNavigation();
+  const { isBetting, setIsBetting } = useContextValue();
 
   return (
     <View style={styles.container}>
-      <BetPanel {...game} />
+      {isBetting ? <BetPanel {...game} /> : ""}
+
       <Image source={gameBackground} style={styles.backgroundImage} />
       <TouchableOpacity
         style={styles.backArrowContainer}
@@ -83,7 +87,7 @@ export function GameBet() {
             <MyText style={styles.betAreaText}>
               Você ainda não fez uma aposta para este jogo
             </MyText>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => setIsBetting(true)}>
               <MyText style={styles.betAreaButton}>Fazer aposta</MyText>
             </TouchableOpacity>
           </View>
