@@ -8,7 +8,7 @@ interface PlayerListProps {
 
 export function PlayerList({ participants }: PlayerListProps) {
   return (
-    <ScrollView horizontal={true}>
+    <ScrollView>
       <View>
         <View>
           <MyText>NOME</MyText>

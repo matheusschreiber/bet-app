@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     marginTop: 10,
+    width: "100%",
   },
   groupSubTitle: {
     marginTop: 10,
