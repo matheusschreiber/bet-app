@@ -2,9 +2,11 @@ import { StyleSheet } from "react-native";
 import { THEME } from "../../theme";
 
 export const styles = StyleSheet.create({
-  mainContainer: {
+  mainContainer: {},
+  headerContainer: {
     backgroundColor: THEME.COLORS.GREEN,
     height: 150,
+    marginBottom: 50,
   },
   topContainer: {
     width: "100%",

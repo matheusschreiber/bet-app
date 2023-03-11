@@ -14,25 +14,27 @@ export function Group() {
   const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.topContainer}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image style={styles.backIcon} source={backArrow} />
-        </TouchableOpacity>
-        <MyText style={styles.titleGroup}>{group.name}</MyText>
-      </View>
-
-      <View style={styles.prizeFlexBox}>
-        <View style={styles.prizeContainer}>
-          <Image source={prizeIcon} />
-          <View>
-            <MyText style={styles.prizeTitle}>Prêmio estabelecido</MyText>
-            <MyText style={styles.descPrize}>{group.prize}</MyText>
-          </View>
-
-          <TouchableOpacity style={styles.editContainer}>
-            <Image source={editIcon} />
-            <MyText>Alterar</MyText>
+      <View style={styles.headerContainer}>
+        <View style={styles.topContainer}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image style={styles.backIcon} source={backArrow} />
           </TouchableOpacity>
+          <MyText style={styles.titleGroup}>{group.name}</MyText>
+        </View>
+
+        <View style={styles.prizeFlexBox}>
+          <View style={styles.prizeContainer}>
+            <Image source={prizeIcon} />
+            <View>
+              <MyText style={styles.prizeTitle}>Prêmio estabelecido</MyText>
+              <MyText style={styles.descPrize}>{group.prize}</MyText>
+            </View>
+
+            <TouchableOpacity style={styles.editContainer}>
+              <Image source={editIcon} />
+              <MyText>Alterar</MyText>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
 
