@@ -1,16 +1,16 @@
 import { Image, TouchableOpacity, View, ActivityIndicator } from "react-native";
-import { GameProps } from "../../@types/navigation";
 
 import { styles } from "./style";
 
-import calendarIcon from "../../../assets/icons/calendar.png";
-import ticketIcon from "../../../assets/icons/ticket.png";
-import clockIcon from "../../../assets/icons/clock.png";
-import closeIcon from "../../../assets/icons/close.png";
-import { leadingZeros } from "../GameCard";
-import { MyText } from "../MyText";
-import { useContextValue } from "../../services/contextElement";
+import calendarIcon from "../../../../assets/icons/calendar.png";
+import ticketIcon from "../../../../assets/icons/ticket.png";
+import clockIcon from "../../../../assets/icons/clock.png";
+import closeIcon from "../../../../assets/icons/close.png";
 import { useState } from "react";
+import { GameProps } from "../../../@types/navigation";
+import { useContextValue } from "../../../services/contextElement";
+import { MyText } from "../../MyText";
+import { leadingZeros } from "../../HomeScreenComponents/GameCard";
 
 export function BetPanel({
   team1,

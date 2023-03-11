@@ -1,9 +1,9 @@
 import { Image, View } from "react-native";
-import { MyText } from "../MyText";
 import { styles } from "./style";
-import trophy from "../../../assets/icons/trophy_profile.png";
-import ticket from "../../../assets/icons/ticket_profile.png";
-import star from "../../../assets/icons/star_profile.png";
+import trophy from "../../../../assets/icons/trophy_profile.png";
+import ticket from "../../../../assets/icons/ticket_profile.png";
+import star from "../../../../assets/icons/star_profile.png";
+import { MyText } from "../../MyText";
 
 export function Statistics() {
   return (

@@ -1,8 +1,11 @@
 declare module "../components/Homebar";
-declare module "../components/Groups";
-declare module "../components/Games";
-declare module "../components/GameCard";
 declare module "../components/MyText";
-declare module "../components/Statistics";
-declare module "../components/BetPanel";
-declare module "../components/PlayerList";
+
+declare module "../components/HomeScreenComponents/Groups";
+declare module "../components/HomeScreenComponents/Games";
+declare module "../components/HomeScreenComponents/GameCard";
+declare module "../components/HomeScreenComponents/Statistics";
+
+declare module "../components/GameBetScreenComponents/BetPanel";
+
+declare module "../components/GroupScreenComponents/PlayerList";

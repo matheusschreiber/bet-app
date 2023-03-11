@@ -1,10 +1,10 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import { styles } from "./style";
 
-import rightArrow from "../../../assets/icons/right_arrow.png";
-import { MyText } from "../MyText";
+import rightArrow from "../../../../assets/icons/right_arrow.png";
 import { useNavigation } from "@react-navigation/native";
-import { User } from "../../@types/navigation";
+import { User } from "../../../@types/navigation";
+import { MyText } from "../../MyText";
 
 interface GroupCard {
   name: string;

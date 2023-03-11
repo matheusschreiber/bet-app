@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { View, Image, TouchableOpacity, ScrollView } from "react-native";
 
-import rightArrow from "../../../assets/icons/right_arrow.png";
+import rightArrow from "../../../../assets/icons/right_arrow.png";
+import { MyText } from "../../MyText";
 import { GameCard } from "../GameCard";
-import { MyText } from "../MyText";
 import { styles } from "./style";
 
 export function Games() {

@@ -1,7 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Image, ScrollView, TouchableOpacity, View } from "react-native";
 import { GameProps } from "../../@types/navigation";
-import { leadingZeros } from "../../components/GameCard";
 import gameBackground from "../../../assets/game_background.png";
 import leftArrow from "../../../assets/icons/left_arrow.png";
 import { styles } from "./style";
@@ -10,10 +9,11 @@ import calendarIcon from "../../../assets/icons/calendar.png";
 import ticketIcon from "../../../assets/icons/ticket.png";
 import clockIcon from "../../../assets/icons/clock.png";
 import ticketLarge from "../../../assets/icons/ticket_large.png";
-import { BetPanel } from "../../components/BetPanel";
 import { MyText } from "../../components/MyText";
 import { useState } from "react";
 import { useContextValue } from "../../services/contextElement";
+import { BetPanel } from "../../components/GameBetScreenComponents/BetPanel";
+import { leadingZeros } from "../../components/HomeScreenComponents/GameCard";
 
 export function GameBet() {
   const router = useRoute();

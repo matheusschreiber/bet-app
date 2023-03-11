@@ -1,13 +1,13 @@
 import { Image, View, ScrollView } from "react-native";
 import { HomeBar } from "../../components/HomeBar";
-import { Groups } from "../../components/Groups";
-import { Games } from "../../components/Games";
+import { Groups } from "../../components/HomeScreenComponents/Groups";
 import background from "../../../assets/home_background.png";
 import bellIcon from "../../../assets/icons/bell.png";
 import imagemTeste from "../../../assets/teste.jpg";
 import { styles } from "./style";
 import { MyText } from "../../components/MyText";
-import { Statistics } from "../../components/Statistics";
+import { Statistics } from "../../components/HomeScreenComponents/Statistics";
+import { Games } from "../../components/HomeScreenComponents/Games";
 
 export function Account() {
   return (

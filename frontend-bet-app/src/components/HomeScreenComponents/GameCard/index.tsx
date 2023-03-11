@@ -1,12 +1,12 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import { styles } from "./style";
 
-import calendarIcon from "../../../assets/icons/calendar.png";
-import ticketIcon from "../../../assets/icons/ticket.png";
-import clockIcon from "../../../assets/icons/clock.png";
+import calendarIcon from "../../../../assets/icons/calendar.png";
+import ticketIcon from "../../../../assets/icons/ticket.png";
+import clockIcon from "../../../../assets/icons/clock.png";
 import { useNavigation } from "@react-navigation/native";
-import { MyText } from "../MyText";
-import { GameProps } from "../../@types/navigation";
+import { GameProps } from "../../../@types/navigation";
+import { MyText } from "../../MyText";
 
 export function leadingZeros(num: number) {
   if (num < 10) return "0" + num;

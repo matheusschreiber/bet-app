@@ -57,4 +57,19 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     gap: 5,
   },
+  listSelector: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "center",
+    marginTop: 20,
+  },
+  listSelectorTitle: {
+    fontFamily: "montserratBold",
+    fontSize: 15,
+    width: 180,
+    textAlign: "center",
+    borderBottomColor: "black",
+    paddingBottom: 10,
+    borderBottomWidth: 2,
+  },
 });

@@ -1,11 +1,11 @@
 import { FlatList, Image, ScrollView, View } from "react-native";
-import { User } from "../../@types/navigation";
-import { MyText } from "../MyText";
+import { User } from "../../../@types/navigation";
+import { MyText } from "../../MyText";
 
 import { styles } from "./style";
 
-import ticketIcon from "../../../assets/icons/ticket_profile.png";
-import starIcon from "../../../assets/icons/star_profile.png";
+import ticketIcon from "../../../../assets/icons/ticket_profile.png";
+import starIcon from "../../../../assets/icons/star_profile.png";
 
 interface PlayerListProps {
   participants: User[];
