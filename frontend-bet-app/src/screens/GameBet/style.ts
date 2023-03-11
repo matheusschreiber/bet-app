@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     height: 60,
     borderRadius: 20,
     textAlign: "center",
-    verticalAlign: "middle",
+    textAlignVertical: "center",
     fontSize: 30,
   },
   vsText: {
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     height: 30,
     width: 30,
     textAlign: "center",
-    verticalAlign: "middle",
+    textAlignVertical: "center",
     borderRadius: 30,
     fontFamily: "montserratBold",
     fontSize: 12,

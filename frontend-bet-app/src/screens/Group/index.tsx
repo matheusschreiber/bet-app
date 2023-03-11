@@ -8,6 +8,8 @@ import { styles } from "./style";
 import { PlayerList } from "../../components/GroupScreenComponents/PlayersList";
 import { MyText } from "../../components/MyText";
 import { useState } from "react";
+import { GameResultsList } from "../../components/GroupScreenComponents/GameResultsList";
+import { PlusButton } from "../../components/GroupScreenComponents/PlusButton";
 
 export function Group() {
   const router = useRoute();
@@ -17,9 +19,13 @@ export function Group() {
   const [listSelected, setListSelected] = useState<number>(1);
   return (
     <View style={styles.mainContainer}>
+      <PlusButton />
       <View style={styles.headerContainer}>
         <View style={styles.topContainer}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity
+            style={styles.backIconContainer}
+            onPress={() => navigation.goBack()}
+          >
             <Image style={styles.backIcon} source={backArrow} />
           </TouchableOpacity>
           <MyText style={styles.titleGroup}>{group.name}</MyText>
@@ -66,7 +72,9 @@ export function Group() {
         </TouchableOpacity>
       </View>
 
-      <PlayerList participants={group.participants} />
+      {listSelected == 1 && <PlayerList participants={group.participants} />}
+
+      {listSelected == 2 && <GameResultsList />}
     </View>
   );
 }

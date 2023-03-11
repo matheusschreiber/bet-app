@@ -20,6 +20,13 @@ const groups = [
       { id: 3, name: "Jonas", picture: teste4, wins: 15, points: 10 },
       { id: 4, name: "Jorge", picture: teste5, wins: 15, points: 7 },
       { id: 5, name: "Elisa", picture: teste6, wins: 15, points: 7 },
+      { id: 7, name: "Elisa", picture: teste6, wins: 15, points: 7 },
+      { id: 8, name: "Elisa", picture: teste6, wins: 15, points: 7 },
+      { id: 9, name: "Elisa", picture: teste6, wins: 15, points: 7 },
+      { id: 10, name: "Elisa", picture: teste6, wins: 15, points: 7 },
+      { id: 11, name: "Elisa", picture: teste6, wins: 15, points: 7 },
+      { id: 12, name: "Elisa", picture: teste6, wins: 15, points: 7 },
+      { id: 13, name: "Elisa", picture: teste6, wins: 15, points: 7 },
     ],
   },
   {
@@ -71,8 +78,9 @@ export function Groups() {
           width: "100%",
         }}
         horizontal={true}
-        data={[1]}
-        renderItem={() => (
+        data={[]}
+        renderItem={() => <></>}
+        ListEmptyComponent={
           <FlatList
             data={groups}
             keyExtractor={(item) => item.id}
@@ -85,7 +93,7 @@ export function Groups() {
               />
             )}
           />
-        )}
+        }
       />
     </View>
   );

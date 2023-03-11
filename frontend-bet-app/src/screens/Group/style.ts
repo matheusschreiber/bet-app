@@ -3,6 +3,13 @@ import { THEME } from "../../theme";
 
 export const styles = StyleSheet.create({
   mainContainer: {},
+  backIconContainer: {
+    height: 50,
+    width: 50,
+    position: "absolute",
+    alignItems: "center",
+    zIndex: 1000,
+  },
   headerContainer: {
     backgroundColor: THEME.COLORS.GREEN,
     height: 150,
@@ -23,9 +30,7 @@ export const styles = StyleSheet.create({
     color: "white",
   },
   backIcon: {
-    position: "absolute",
-    left: 20,
-    zIndex: 1000,
+    left: 10,
   },
   prizeContainer: {
     backgroundColor: "white",

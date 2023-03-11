@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     height: 60,
     borderRadius: 20,
     textAlign: "center",
-    verticalAlign: "middle",
+    textAlignVertical: "center",
     fontSize: 30,
   },
   vsText: {
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
     height: 30,
     width: 30,
     textAlign: "center",
-    verticalAlign: "middle",
+    textAlignVertical: "center",
     borderRadius: 30,
     fontFamily: "montserratBold",
     fontSize: 12,
@@ -75,7 +75,7 @@ export const styles = StyleSheet.create({
 
   betIconContainer: {
     textAlign: "center",
-    verticalAlign: "middle",
+    textAlignVertical: "center",
     fontSize: 30,
   },
   betTeamName: {
@@ -123,7 +123,7 @@ export const styles = StyleSheet.create({
     height: 35,
     width: 35,
     textAlign: "center",
-    verticalAlign: "middle",
+    textAlignVertical: "center",
     borderRadius: 10,
     borderWidth: 2,
     borderColor: "black",
@@ -142,7 +142,7 @@ export const styles = StyleSheet.create({
     width: 50,
     height: 50,
     textAlign: "center",
-    verticalAlign: "middle",
+    textAlignVertical: "center",
     fontFamily: "montserratBold",
   },
   concludeBet: {

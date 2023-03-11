@@ -2,6 +2,8 @@ import { Image, TouchableOpacity, View } from "react-native";
 import { styles } from "./style";
 
 import rightArrow from "../../../../assets/icons/right_arrow.png";
+import blankProfile from "../../../../assets/icons/blank_profile.png";
+
 import { useNavigation } from "@react-navigation/native";
 import { User } from "../../../@types/navigation";
 import { MyText } from "../../MyText";
@@ -32,13 +34,21 @@ export function GroupCard({ name, participants, amount }: GroupCard) {
           <View>
             <MyText style={styles.groupTitle}>{name}</MyText>
             <View style={styles.groupImages}>
-              {participants?.map((user, idx) => (
-                <Image
-                  key={idx}
-                  source={user.picture}
-                  style={styles.groupImage}
-                />
-              ))}
+              {participants?.map((user, idx) => {
+                if (idx > 5) return <></>;
+                else if (idx == 5)
+                  return (
+                    <Image source={blankProfile} style={styles.groupImage} />
+                  );
+
+                return (
+                  <Image
+                    key={idx}
+                    source={user.picture}
+                    style={styles.groupImage}
+                  />
+                );
+              })}
             </View>
             <MyText style={styles.groupSubTitle}>{amount}</MyText>
           </View>

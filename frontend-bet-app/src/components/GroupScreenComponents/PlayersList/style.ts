@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
     borderTopRightRadius: 50,
     borderTopLeftRadius: 50,
+    borderBottomRightRadius: 50,
+    borderBottomLeftRadius: 50,
+    paddingBottom: 40,
   },
   playerContainer: {
     width: "100%",

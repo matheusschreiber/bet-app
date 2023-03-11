@@ -65,7 +65,19 @@ export function GameCard({
         </View>
       </View>
 
-      <View style={styles.infoContainer}>
+      <View
+        style={
+          !team1Score && !team2Score
+            ? {
+                ...styles.infoContainer,
+                borderBottomWidth: 1,
+              }
+            : {
+                ...styles.infoContainer,
+                borderBottomWidth: 0,
+              }
+        }
+      >
         <Image source={calendarIcon} />
         <MyText style={styles.infoText}>
           {leadingZeros(new Date(date).getDay())}{" "}

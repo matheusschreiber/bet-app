@@ -4,9 +4,9 @@ import { THEME } from "../../../theme";
 export const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: "white",
-    width: 250,
     borderRadius: 20,
     marginLeft: 20,
+    width: 250,
   },
   descText: {
     backgroundColor: "black",
@@ -51,7 +51,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
     paddingVertical: 10,
-    borderBottomWidth: 1,
     borderBottomColor: THEME.COLORS.LIGHT_GRAY,
     paddingHorizontal: 20,
   },

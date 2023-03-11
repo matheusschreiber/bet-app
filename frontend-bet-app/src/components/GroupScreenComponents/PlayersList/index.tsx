@@ -13,7 +13,7 @@ interface PlayerListProps {
 
 export function PlayerList({ participants }: PlayerListProps) {
   return (
-    <View>
+    <ScrollView>
       <View style={styles.headerContainer}>
         <MyText style={styles.nameHeader}>NOME</MyText>
         <MyText>ACERTOS</MyText>
@@ -21,29 +21,39 @@ export function PlayerList({ participants }: PlayerListProps) {
       </View>
 
       <FlatList
-        data={participants}
+        data={[]}
+        renderItem={() => <></>}
+        horizontal
         contentContainerStyle={{ width: "100%" }}
-        style={styles.flatListContainer}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item, index }) => (
-          <View style={styles.playerContainer}>
-            <View style={styles.namePlayer}>
-              <MyText style={styles.indexPlayer}>{index + 1}</MyText>
-              <Image style={styles.playerPhoto} source={item.picture} />
-              <MyText style={styles.playerName}>{item.name}</MyText>
-            </View>
-            <View style={styles.simpleContainer}>
-              <Image source={ticketIcon} />
-              <MyText style={styles.boldText}>{item.wins}</MyText>
-            </View>
+        ListEmptyComponent={
+          <FlatList
+            data={participants}
+            contentContainerStyle={{ width: "100%" }}
+            style={styles.flatListContainer}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item, index }) => (
+              <View style={styles.playerContainer}>
+                <View style={styles.namePlayer}>
+                  <MyText style={styles.indexPlayer}>{index + 1}</MyText>
+                  <Image style={styles.playerPhoto} source={item.picture} />
+                  <MyText style={styles.playerName}>{item.name}</MyText>
+                </View>
+                <View style={styles.simpleContainer}>
+                  <Image source={ticketIcon} />
+                  <MyText style={styles.boldText}>{item.wins}</MyText>
+                </View>
 
-            <View style={styles.simpleContainer}>
-              <Image source={starIcon} />
-              <MyText style={styles.boldText}>{item.points}</MyText>
-            </View>
-          </View>
-        )}
+                <View style={styles.simpleContainer}>
+                  <Image source={starIcon} />
+                  <MyText style={styles.boldText}>{item.points}</MyText>
+                </View>
+              </View>
+            )}
+          />
+        }
       />
-    </View>
+
+      <View style={{ height: 400 }} />
+    </ScrollView>
   );
 }

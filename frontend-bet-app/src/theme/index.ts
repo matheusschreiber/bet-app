@@ -14,5 +14,6 @@ export const THEME = {
     LIGHT_BLUE: "#E2FAFF",
 
     LIGHT_YELLOW: "#FFF7E3",
+    LIGHT_RED: "#FFECEC",
   },
 };
