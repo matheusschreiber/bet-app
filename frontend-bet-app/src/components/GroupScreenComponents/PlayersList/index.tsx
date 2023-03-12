@@ -13,47 +13,50 @@ interface PlayerListProps {
 
 export function PlayerList({ participants }: PlayerListProps) {
   return (
-    <ScrollView>
+    <View>
       <View style={styles.headerContainer}>
         <MyText style={styles.nameHeader}>NOME</MyText>
         <MyText>ACERTOS</MyText>
         <MyText>PONTOS</MyText>
       </View>
 
-      <FlatList
-        data={[]}
-        renderItem={() => <></>}
-        horizontal
-        contentContainerStyle={{ width: "100%" }}
-        ListEmptyComponent={
-          <FlatList
-            data={participants}
-            contentContainerStyle={{ width: "100%" }}
-            style={styles.flatListContainer}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item, index }) => (
-              <View style={styles.playerContainer}>
-                <View style={styles.namePlayer}>
-                  <MyText style={styles.indexPlayer}>{index + 1}</MyText>
-                  <Image style={styles.playerPhoto} source={item.picture} />
-                  <MyText style={styles.playerName}>{item.name}</MyText>
-                </View>
-                <View style={styles.simpleContainer}>
-                  <Image source={ticketIcon} />
-                  <MyText style={styles.boldText}>{item.wins}</MyText>
-                </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <FlatList
+          data={[]}
+          renderItem={() => <></>}
+          horizontal
+          contentContainerStyle={{ width: "100%" }}
+          style={{ paddingBottom: 400 }}
+          ListEmptyComponent={
+            <FlatList
+              data={participants}
+              contentContainerStyle={{ width: "100%" }}
+              style={styles.flatListContainer}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item, index }) => (
+                <View style={styles.playerContainer}>
+                  <View style={styles.namePlayer}>
+                    <MyText style={styles.indexPlayer}>{index + 1}</MyText>
+                    <Image style={styles.playerPhoto} source={item.picture} />
+                    <MyText style={styles.playerName}>{item.name}</MyText>
+                  </View>
+                  <View style={styles.simpleContainer}>
+                    <Image source={ticketIcon} />
+                    <MyText style={styles.boldText}>{item.wins}</MyText>
+                  </View>
 
-                <View style={styles.simpleContainer}>
-                  <Image source={starIcon} />
-                  <MyText style={styles.boldText}>{item.points}</MyText>
+                  <View style={styles.simpleContainer}>
+                    <Image source={starIcon} />
+                    <MyText style={styles.boldText}>{item.points}</MyText>
+                  </View>
                 </View>
-              </View>
-            )}
-          />
-        }
-      />
+              )}
+            />
+          }
+        />
 
-      <View style={{ height: 400 }} />
-    </ScrollView>
+        <View style={{ height: 300 }} />
+      </ScrollView>
+    </View>
   );
 }
