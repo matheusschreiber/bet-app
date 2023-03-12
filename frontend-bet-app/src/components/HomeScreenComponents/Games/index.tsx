@@ -63,6 +63,7 @@ export function Games() {
         </TouchableOpacity>
       </View>
 
+      {/* TODO: switch map to FlatList */}
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -84,6 +85,7 @@ export function Games() {
         </TouchableOpacity>
       </View>
 
+      {/* TODO: switch map to FlatList */}
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
