@@ -38,7 +38,11 @@ export function GroupCard({ name, participants, amount }: GroupCard) {
                 if (idx > 5) return <></>;
                 else if (idx == 5)
                   return (
-                    <Image source={blankProfile} style={styles.groupImage} />
+                    <Image
+                      key={idx}
+                      source={blankProfile}
+                      style={styles.groupImage}
+                    />
                   );
 
                 return (
