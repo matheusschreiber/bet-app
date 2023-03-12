@@ -5,6 +5,8 @@ const contextDefaultValues = {
   setSelected: (n: number) => {},
   isBetting: false,
   setIsBetting: (b: boolean) => {},
+  isNewBetWindowCollapsed: true,
+  setIsNewBetWindowCollapsed: (b: boolean) => {},
 };
 
 export const ContextElement = React.createContext(contextDefaultValues);
@@ -20,12 +22,16 @@ type Props = {
 export function ContextProvider({ children }: Props) {
   const [selected, setSelected] = useState<number>(0);
   const [isBetting, setIsBetting] = useState<boolean>(false);
+  const [isNewBetWindowCollapsed, setIsNewBetWindowCollapsed] =
+    useState<boolean>(true);
 
   const value = {
     selected,
     setSelected,
     isBetting,
     setIsBetting,
+    isNewBetWindowCollapsed,
+    setIsNewBetWindowCollapsed,
   };
 
   return (

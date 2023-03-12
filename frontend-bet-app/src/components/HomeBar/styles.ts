@@ -2,6 +2,12 @@ import { StyleSheet } from "react-native";
 import { THEME } from "../../theme";
 
 export const styles = StyleSheet.create({
+  mainContainer: {
+    height: "100%",
+    width: "100%",
+    position: "absolute",
+    zIndex: 1000,
+  },
   container: {
     width: "90%",
     borderRadius: 25,

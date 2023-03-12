@@ -20,10 +20,15 @@ import { leadingZeros } from "../HomeScreenComponents/GameCard";
 interface GameCardLargeProps {
   gameProps: GameProps;
   //TODO: change to bets[]
-  betsResults: User[];
+  betsResults?: User[];
+  parentStyle?: Object;
 }
 
-export function GameCardLarge({ gameProps, betsResults }: GameCardLargeProps) {
+export function GameCardLarge({
+  gameProps,
+  betsResults,
+  parentStyle,
+}: GameCardLargeProps) {
   const [betsCollapsed, setBetsCollapsed] = useState<boolean>(true);
   const [isResultGame, setIsResultGame] = useState<boolean>(true);
 
@@ -37,7 +42,7 @@ export function GameCardLarge({ gameProps, betsResults }: GameCardLargeProps) {
   }, []);
 
   return (
-    <View style={styles.mainContainer}>
+    <View style={{ ...styles.mainContainer, ...parentStyle }}>
       <MyText style={styles.descText}>{gameProps.desc}</MyText>
       <View style={styles.middleContainer}>
         <View style={styles.teamContainer}>
