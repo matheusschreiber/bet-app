@@ -35,7 +35,7 @@ export function GroupCard({ name, participants, amount }: GroupCard) {
             <MyText style={styles.groupTitle}>{name}</MyText>
             <View style={styles.groupImages}>
               {participants?.map((user, idx) => {
-                if (idx > 5) return <></>;
+                if (idx > 5) return <View key={idx} />;
                 else if (idx == 5)
                   return (
                     <Image

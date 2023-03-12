@@ -17,10 +17,10 @@ const games = [
     desc: "SEMI-FINAL",
     team1: "Brasil",
     team1Icon: "🇧🇷",
-    team1Score: 2,
+    // team1Score: 2,
     team2: "Argentina",
     team2Icon: "🇦🇷",
-    team2Score: 1,
+    // team2Score: 1,
   },
   {
     id: 2,

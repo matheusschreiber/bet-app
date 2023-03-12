@@ -10,7 +10,12 @@ import winIcon from "../../../assets/icons/check_green.png";
 import loseIcon from "../../../assets/icons/close_red.png";
 import starIcon from "../../../assets/icons/star_profile.png";
 
-import { useState } from "react";
+import calendarIcon from "../../../assets/icons/calendar.png";
+import clockIcon from "../../../assets/icons/clock.png";
+import ticketIcon from "../../../assets/icons/ticket.png";
+
+import { useEffect, useState } from "react";
+import { leadingZeros } from "../HomeScreenComponents/GameCard";
 
 interface GameCardLargeProps {
   gameProps: GameProps;
@@ -20,6 +25,16 @@ interface GameCardLargeProps {
 
 export function GameCardLarge({ gameProps, betsResults }: GameCardLargeProps) {
   const [betsCollapsed, setBetsCollapsed] = useState<boolean>(true);
+  const [isResultGame, setIsResultGame] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (
+      typeof gameProps.team1Score != "undefined" &&
+      typeof gameProps.team2Score != "undefined"
+    )
+      setIsResultGame(true);
+    else setIsResultGame(false);
+  }, []);
 
   return (
     <View style={styles.mainContainer}>
@@ -36,42 +51,69 @@ export function GameCardLarge({ gameProps, betsResults }: GameCardLargeProps) {
           </MyText>
           <View style={styles.teamNameContainer}>
             <MyText style={styles.teamName}>{gameProps.team1}</MyText>
-            <MyText style={styles.teamScore}>{gameProps.team1Score}</MyText>
+            {isResultGame && (
+              <MyText style={styles.teamScore}>{gameProps.team1Score}</MyText>
+            )}
           </View>
         </View>
 
-        <View style={styles.teamContainer}>
-          <MyText
-            style={{
-              ...styles.teamIcon,
-              backgroundColor: THEME.COLORS.LIGHT_RED,
-            }}
-          >
-            {gameProps.team2Icon}
-          </MyText>
-          <View style={styles.teamNameContainer}>
-            <MyText style={styles.teamName}>{gameProps.team2}</MyText>
-            <MyText style={styles.teamScore}>{gameProps.team2Score}</MyText>
+        {!isResultGame && <MyText style={styles.vsText}>VS</MyText>}
+
+        {isResultGame ? (
+          <View style={styles.teamContainer}>
+            <MyText
+              style={{
+                ...styles.teamIcon,
+                backgroundColor: THEME.COLORS.LIGHT_RED,
+              }}
+            >
+              {gameProps.team2Icon}
+            </MyText>
+            <View style={styles.teamNameContainer}>
+              <MyText style={styles.teamName}>{gameProps.team2}</MyText>
+              {isResultGame && (
+                <MyText style={styles.teamScore}>{gameProps.team2Score}</MyText>
+              )}
+            </View>
           </View>
-        </View>
+        ) : (
+          <View style={styles.teamContainer}>
+            <View style={styles.teamNameContainer}>
+              <MyText style={styles.teamName}>{gameProps.team2}</MyText>
+              {isResultGame && (
+                <MyText style={styles.teamScore}>{gameProps.team2Score}</MyText>
+              )}
+            </View>
+            <MyText
+              style={{
+                ...styles.teamIcon,
+                backgroundColor: THEME.COLORS.LIGHT_RED,
+              }}
+            >
+              {gameProps.team2Icon}
+            </MyText>
+          </View>
+        )}
       </View>
 
-      <TouchableOpacity
-        style={styles.betShowSwitcher}
-        onPress={() => setBetsCollapsed(!betsCollapsed)}
-      >
-        {betsCollapsed ? (
-          <MyText>VER APOSTAS</MyText>
-        ) : (
-          <MyText>OCULTAR APOSTAS</MyText>
-        )}
+      {isResultGame && (
+        <TouchableOpacity
+          style={styles.betShowSwitcher}
+          onPress={() => setBetsCollapsed(!betsCollapsed)}
+        >
+          {betsCollapsed ? (
+            <MyText>VER APOSTAS</MyText>
+          ) : (
+            <MyText>OCULTAR APOSTAS</MyText>
+          )}
 
-        {betsCollapsed ? (
-          <Image source={downArrowIcon} />
-        ) : (
-          <Image source={upArrowIcon} />
-        )}
-      </TouchableOpacity>
+          {betsCollapsed ? (
+            <Image source={downArrowIcon} />
+          ) : (
+            <Image source={upArrowIcon} />
+          )}
+        </TouchableOpacity>
+      )}
 
       {!betsCollapsed && (
         <View>
@@ -116,6 +158,37 @@ export function GameCardLarge({ gameProps, betsResults }: GameCardLargeProps) {
               />
             }
           />
+        </View>
+      )}
+
+      {!isResultGame && (
+        <View style={styles.infoContainer}>
+          <View style={styles.subtitleContainer}>
+            <Image source={calendarIcon} />
+            <MyText style={styles.subtitle}>
+              {leadingZeros(new Date(gameProps.date).getDay())}{" "}
+              {new Date(gameProps.date)
+                .toLocaleString("default", { month: "long" })
+                .charAt(0)
+                .toUpperCase() +
+                new Date(gameProps.date)
+                  .toLocaleString("default", { month: "long" })
+                  .slice(1)}
+            </MyText>
+          </View>
+
+          <View style={styles.subtitleContainer}>
+            <Image source={clockIcon} />
+            <MyText style={styles.subtitle}>
+              {leadingZeros(new Date(gameProps.date).getHours())}:
+              {leadingZeros(new Date(gameProps.date).getMinutes())}
+            </MyText>
+          </View>
+
+          <View style={styles.subtitleContainer}>
+            <Image source={ticketIcon} />
+            <MyText style={styles.subtitle}>{gameProps.amount}</MyText>
+          </View>
         </View>
       )}
     </View>

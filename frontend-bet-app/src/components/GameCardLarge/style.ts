@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 20,
   },
   teamContainer: {
@@ -31,10 +32,14 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     padding: 15,
     borderRadius: 20,
+    lineHeight: 30,
+    height: 70,
+    textAlignVertical: "center",
   },
   teamNameContainer: {
     justifyContent: "center",
-    paddingLeft: 10,
+    alignItems: "center",
+    paddingHorizontal: 10,
   },
   teamName: {
     fontSize: 15,
@@ -115,5 +120,35 @@ export const styles = StyleSheet.create({
   pointsContainer: {
     flexDirection: "row",
     gap: 5,
+  },
+
+  infoContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginTop: 10,
+    paddingVertical: 5,
+    borderTopWidth: 0.5,
+    borderColor: THEME.COLORS.GRAY,
+  },
+  subtitle: {
+    color: THEME.COLORS.DARK_GRAY,
+    fontSize: 15,
+    marginLeft: 10,
+    fontFamily: "montserratMedium",
+    maxWidth: 150,
+  },
+  subtitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  vsText: {
+    backgroundColor: THEME.COLORS.LIGHT_GRAY,
+    height: 30,
+    width: 30,
+    textAlign: "center",
+    textAlignVertical: "center",
+    borderRadius: 30,
+    fontSize: 12,
   },
 });
