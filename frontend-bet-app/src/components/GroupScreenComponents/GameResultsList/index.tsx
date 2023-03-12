@@ -119,6 +119,8 @@ export function GameResultsList() {
           />
         }
       />
+
+      <View style={{ height: 400 }} />
     </ScrollView>
   );
 }
