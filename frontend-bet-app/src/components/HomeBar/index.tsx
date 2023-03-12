@@ -1,12 +1,5 @@
-import { View, Image, TouchableOpacity, Text } from "react-native";
+import { View, Image, TouchableOpacity, Text, FlatList } from "react-native";
 import { useContextValue } from "../../services/contextElement";
-// import {
-//   House,
-//   PlusCircle,
-//   SoccerBall,
-//   Trophy,
-//   User,
-// } from "phosphor-react-native";
 import { styles } from "./styles";
 
 import home from "../../../assets/icons/home.png";
@@ -24,6 +17,7 @@ import { THEME } from "../../theme";
 import { useNavigation } from "@react-navigation/native";
 
 interface ItemProps {
+  key: number;
   icon: ImageData;
   iconSelected: ImageData;
   page: string;
@@ -33,47 +27,42 @@ export function HomeBar() {
   const { selected, setSelected } = useContextValue();
   const navigation = useNavigation();
 
-  // const icons = [
-  //   <House color="#fff" size={35} />,
-  //   <Trophy color="#fff" size={35} />,
-  //   <PlusCircle color="#fff" size={50} weight="fill" />,
-  //   <SoccerBall color="#fff" size={35} weight="fill" />,
-  //   <User color="#fff" size={35} />,
-  // ];
-
-  // function checkSelected(item: JSX.Element, idx: number) {
-  //   if (selected == idx) item.props.color = `${THEME.COLORS.GREEN}`;
-  //   return item;
-  // }
-
   function checkSelected(item: ItemProps, idx: number) {
     if (selected == idx) return item.iconSelected;
     else return item.icon;
   }
 
   const icons: ItemProps[] = [
-    { icon: home, iconSelected: homeSelected, page: "home" },
-    { icon: rankings, iconSelected: rankingsSelected, page: "rankings" },
-    { icon: add, iconSelected: add, page: "add" },
-    { icon: games, iconSelected: gamesSelected, page: "games" },
-    { icon: account, iconSelected: accountSelected, page: "account" },
+    { key: 1, icon: home, iconSelected: homeSelected, page: "home" },
+    {
+      key: 2,
+      icon: rankings,
+      iconSelected: rankingsSelected,
+      page: "rankings",
+    },
+    { key: 3, icon: add, iconSelected: add, page: "add" },
+    { key: 4, icon: games, iconSelected: gamesSelected, page: "games" },
+    { key: 5, icon: account, iconSelected: accountSelected, page: "account" },
   ];
 
   return (
     <View style={styles.topContainer}>
-      <View style={styles.container}>
-        {icons?.map((item, idx) => (
+      <FlatList
+        data={icons}
+        keyExtractor={(item) => String(item.key)}
+        style={{ flexDirection: "row" }}
+        contentContainerStyle={styles.container}
+        renderItem={({ item }) => (
           <TouchableOpacity
-            key={idx}
             onPress={() => {
-              setSelected(idx);
+              setSelected(item.key);
               navigation.navigate(item.page as any);
             }}
           >
-            <Image source={checkSelected(item, idx)} />
+            <Image source={checkSelected(item, item.key)} />
           </TouchableOpacity>
-        ))}
-      </View>
+        )}
+      />
     </View>
   );
 }

@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
   topContainer: {
     position: "absolute",
     bottom: 20,
+    left: "5%",
     height: 80,
     width: "100%",
     flexDirection: "row",
