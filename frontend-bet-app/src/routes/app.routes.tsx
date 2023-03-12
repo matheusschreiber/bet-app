@@ -2,8 +2,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Add } from "../screens/Add";
 import { Games } from "../screens/Games";
-import { Home } from "../screens/Home";
 import { Account } from "../screens/Account";
+import { Home } from "../screens/Home";
 import { Rankings } from "../screens/Rankings";
 import { GameBet } from "../screens/GameBet";
 import { Group } from "../screens/Group";

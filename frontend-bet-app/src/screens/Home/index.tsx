@@ -1,15 +1,41 @@
-import { View } from "react-native";
+import { Image, View, ScrollView } from "react-native";
 import { HomeBar } from "../../components/HomeBar";
-import { MyText } from "../../components/MyText";
-
+import { Groups } from "../../components/HomeScreenComponents/Groups";
+import background from "../../../assets/home_background.png";
+import bellIcon from "../../../assets/icons/bell.png";
+import imagemTeste from "../../../assets/teste.jpg";
 import { styles } from "./style";
+import { MyText } from "../../components/MyText";
+import { Statistics } from "../../components/HomeScreenComponents/Statistics";
+import { Games } from "../../components/HomeScreenComponents/Games";
 
 export function Home() {
   return (
-    <View style={styles.container}>
-      <MyText>HOMEPAGE</MyText>
+    <>
+      <ScrollView>
+        <View style={styles.container}>
+          <Image source={background} style={styles.backgroundContainer} />
+          <View style={styles.topContainer}>
+            <View style={styles.iconContainer}>
+              <Image source={bellIcon} style={styles.bellIcon} />
+            </View>
+          </View>
 
+          <View style={styles.profileContainer}>
+            <Image source={imagemTeste} style={styles.profilePicture} />
+            <MyText style={styles.profileName}>Fulana da silva</MyText>
+          </View>
+
+          <Statistics />
+
+          <Groups />
+
+          <Games />
+
+          <View style={{ width: "100%", height: 150 }}></View>
+        </View>
+      </ScrollView>
       <HomeBar />
-    </View>
+    </>
   );
 }
