@@ -12,6 +12,7 @@ import gamesSelected from "../../../assets/icons/games_selected.png";
 import accountSelected from "../../../assets/icons/account_selected.png";
 import { useNavigation } from "@react-navigation/native";
 import { NewBet } from "../GameBetScreenComponents/NewBet";
+import { NewGroup } from "../GroupScreenComponents/NewGroup";
 
 interface ItemProps {
   key: number;
@@ -26,6 +27,8 @@ export function HomeBar() {
     setSelected,
     isNewBetWindowCollapsed,
     setIsNewBetWindowCollapsed,
+    isNewGroupWindowCollapsed,
+    setIsNewGroupWindowCollapsed,
   } = useContextValue();
   const navigation = useNavigation();
 
@@ -47,6 +50,7 @@ export function HomeBar() {
     { key: 5, icon: account, iconSelected: accountSelected, page: "account" },
   ];
 
+  //FIXME: reduce code here
   if (!isNewBetWindowCollapsed)
     return (
       <View style={styles.mainContainer}>
@@ -72,6 +76,31 @@ export function HomeBar() {
         <NewBet />
       </View>
     );
+  else if (!isNewGroupWindowCollapsed)
+    return (
+      <View style={styles.mainContainer}>
+        <View style={styles.topContainer}>
+          <FlatList
+            data={icons}
+            keyExtractor={(item) => String(item.key)}
+            style={{ flexDirection: "row" }}
+            contentContainerStyle={styles.container}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => {
+                  setSelected(item.key);
+                  if (item.page == "add") setIsNewGroupWindowCollapsed(false);
+                  else navigation.navigate(item.page as any);
+                }}
+              >
+                <Image source={checkSelected(item, item.key)} />
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+        <NewGroup />
+      </View>
+    );
   else
     return (
       <View style={styles.topContainer}>
@@ -84,7 +113,7 @@ export function HomeBar() {
             <TouchableOpacity
               onPress={() => {
                 setSelected(item.key);
-                if (item.page == "add") setIsNewBetWindowCollapsed(false);
+                if (item.page == "add") setIsNewGroupWindowCollapsed(false);
                 else navigation.navigate(item.page as any);
               }}
             >

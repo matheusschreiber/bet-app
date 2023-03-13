@@ -7,6 +7,8 @@ const contextDefaultValues = {
   setIsBetting: (b: boolean) => {},
   isNewBetWindowCollapsed: true,
   setIsNewBetWindowCollapsed: (b: boolean) => {},
+  isNewGroupWindowCollapsed: true,
+  setIsNewGroupWindowCollapsed: (b: boolean) => {},
 };
 
 export const ContextElement = React.createContext(contextDefaultValues);
@@ -24,6 +26,8 @@ export function ContextProvider({ children }: Props) {
   const [isBetting, setIsBetting] = useState<boolean>(false);
   const [isNewBetWindowCollapsed, setIsNewBetWindowCollapsed] =
     useState<boolean>(true);
+  const [isNewGroupWindowCollapsed, setIsNewGroupWindowCollapsed] =
+    useState<boolean>(true);
 
   const value = {
     selected,
@@ -32,6 +36,8 @@ export function ContextProvider({ children }: Props) {
     setIsBetting,
     isNewBetWindowCollapsed,
     setIsNewBetWindowCollapsed,
+    isNewGroupWindowCollapsed,
+    setIsNewGroupWindowCollapsed,
   };
 
   return (
