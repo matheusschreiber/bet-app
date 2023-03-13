@@ -34,6 +34,7 @@ export function NewGroup() {
   const [formPhase, setFormPhase] = useState<number>(1);
   const [usersInvited, setUsersInvited] = useState<number[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [prize, setPrize] = useState<string>("");
 
   function handleInvite(id: number) {
     let aux = [...usersInvited];
@@ -150,8 +151,8 @@ export function NewGroup() {
           </MyText>
 
           <TextInput
-            value={name}
-            onChangeText={setName}
+            value={prize}
+            onChangeText={setPrize}
             style={styles.textInput}
             placeholder="Digite aqui o prêmio ou o valor"
           />
