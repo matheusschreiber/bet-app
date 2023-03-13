@@ -24,5 +24,6 @@ export const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "center",
+    zIndex: 1000,
   },
 });
