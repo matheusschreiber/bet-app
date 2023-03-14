@@ -54,7 +54,9 @@ export function PlayerList({ participants, highlight }: PlayerListProps) {
 
               <View style={styles.simpleContainer}>
                 <Image source={starIcon} />
-                <MyText style={styles.boldText}>{item.points}</MyText>
+                <MyText style={styles.boldText}>
+                  {item.points.toLocaleString("pt-BR")}
+                </MyText>
               </View>
             </View>
           )}

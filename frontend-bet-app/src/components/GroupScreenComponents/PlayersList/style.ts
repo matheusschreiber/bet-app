@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 10,
+    paddingLeft: 50,
     gap: 10,
   },
   nameHeader: {
@@ -38,7 +39,7 @@ export const styles = StyleSheet.create({
   namePlayer: {
     flexDirection: "row",
     justifyContent: "center",
-    width: "50%",
+    width: "40%",
     alignItems: "center",
     gap: 10,
   },
@@ -61,14 +62,16 @@ export const styles = StyleSheet.create({
   simpleContainer: {
     flexDirection: "row",
     alignItems: "center",
+    width: "20%",
   },
   boldText: {
     fontFamily: "montserratBold",
     marginLeft: 5,
+    fontSize: 12,
   },
   highlighted: {
     backgroundColor: THEME.COLORS.LIGHT_GRAY,
     borderRadius: 50,
-    paddingLeft: 20,
+    // paddingLeft: 20,
   },
 });
