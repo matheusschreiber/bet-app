@@ -10,6 +10,7 @@ import { MyText } from "../../components/MyText";
 import { useState } from "react";
 import { GameResultsList } from "../../components/GroupScreenComponents/GameResultsList";
 import { PlusButton } from "../../components/GroupScreenComponents/PlusButton";
+import { GamesFinished } from "../../services/provisoryData";
 
 export function Group() {
   const router = useRoute();
@@ -72,9 +73,11 @@ export function Group() {
         </TouchableOpacity>
       </View>
 
-      {listSelected == 1 && <PlayerList participants={group.participants} />}
+      <View style={{ width: "90%" }}>
+        {listSelected == 1 && <PlayerList participants={group.participants} />}
+      </View>
 
-      {listSelected == 2 && <GameResultsList />}
+      {listSelected == 2 && <GameResultsList games={GamesFinished} />}
     </View>
   );
 }

@@ -15,24 +15,30 @@ export const styles = StyleSheet.create({
   playerContainer: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
     marginVertical: 10,
+    gap: 10,
   },
   nameHeader: {
-    width: "40%",
+    width: "50%",
     textAlign: "center",
+    fontSize: 10,
+  },
+  headerText: {
+    fontSize: 10,
   },
   headerContainer: {
     flexDirection: "row",
     width: "100%",
-    justifyContent: "space-around",
+    justifyContent: "center",
     marginVertical: 20,
+    gap: 10,
   },
   namePlayer: {
     flexDirection: "row",
     justifyContent: "center",
-    width: "40%",
+    width: "50%",
     alignItems: "center",
     gap: 10,
   },
@@ -49,6 +55,7 @@ export const styles = StyleSheet.create({
   },
   playerName: {
     fontFamily: "montserratBold",
+    width: 100,
   },
 
   simpleContainer: {
@@ -58,5 +65,10 @@ export const styles = StyleSheet.create({
   boldText: {
     fontFamily: "montserratBold",
     marginLeft: 5,
+  },
+  highlighted: {
+    backgroundColor: THEME.COLORS.LIGHT_GRAY,
+    borderRadius: 50,
+    paddingLeft: 20,
   },
 });

@@ -6,8 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     paddingVertical: 20,
-    // width: "90%",
-    marginHorizontal: "auto",
+    width: 350,
   },
   descText: {
     backgroundColor: "black",
@@ -23,7 +22,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   teamContainer: {
     flexDirection: "row",
@@ -42,7 +41,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   teamName: {
-    fontSize: 15,
+    fontSize: 12,
     fontFamily: "montserratMedium",
   },
   teamScore: {

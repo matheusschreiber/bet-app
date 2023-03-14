@@ -16,12 +16,14 @@ import ticketIcon from "../../../assets/icons/ticket.png";
 
 import { useEffect, useState } from "react";
 import { leadingZeros } from "../HomeScreenComponents/GameCard";
+import { useNavigation } from "@react-navigation/native";
 
 interface GameCardLargeProps {
   gameProps: GameProps;
   //TODO: change to bets[]
   betsResults?: User[];
   parentStyle?: Object;
+  //this parent style is for the selection on new bet screen
 }
 
 export function GameCardLarge({
@@ -31,6 +33,7 @@ export function GameCardLarge({
 }: GameCardLargeProps) {
   const [betsCollapsed, setBetsCollapsed] = useState<boolean>(true);
   const [isResultGame, setIsResultGame] = useState<boolean>(true);
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (
@@ -42,7 +45,10 @@ export function GameCardLarge({
   }, []);
 
   return (
-    <View style={{ ...styles.mainContainer, ...parentStyle }}>
+    <TouchableOpacity
+      style={{ ...styles.mainContainer, ...parentStyle }}
+      onPress={() => navigation.navigate("gamebet", { ...gameProps })}
+    >
       <MyText style={styles.descText}>{gameProps.desc}</MyText>
       <View style={styles.middleContainer}>
         <View style={styles.teamContainer}>
@@ -147,6 +153,7 @@ export function GameCardLarge({
                       <Image style={styles.userPhoto} source={item.picture} />
                       <MyText>{item.name}</MyText>
                     </View>
+                    {/* logic to count wins/losses */}
                     <View style={styles.winIcon}>
                       <Image style={styles.icon} source={winIcon} />
                     </View>
@@ -168,26 +175,28 @@ export function GameCardLarge({
 
       {!isResultGame && (
         <View style={styles.infoContainer}>
-          <View style={styles.subtitleContainer}>
-            <Image source={calendarIcon} />
-            <MyText style={styles.subtitle}>
-              {leadingZeros(new Date(gameProps.date).getDay())}{" "}
-              {new Date(gameProps.date)
-                .toLocaleString("default", { month: "long" })
-                .charAt(0)
-                .toUpperCase() +
-                new Date(gameProps.date)
+          <View>
+            <View style={styles.subtitleContainer}>
+              <Image source={calendarIcon} />
+              <MyText style={styles.subtitle}>
+                {leadingZeros(new Date(gameProps.date).getDay())}{" "}
+                {new Date(gameProps.date)
                   .toLocaleString("default", { month: "long" })
-                  .slice(1)}
-            </MyText>
-          </View>
+                  .charAt(0)
+                  .toUpperCase() +
+                  new Date(gameProps.date)
+                    .toLocaleString("default", { month: "long" })
+                    .slice(1)}
+              </MyText>
+            </View>
 
-          <View style={styles.subtitleContainer}>
-            <Image source={clockIcon} />
-            <MyText style={styles.subtitle}>
-              {leadingZeros(new Date(gameProps.date).getHours())}:
-              {leadingZeros(new Date(gameProps.date).getMinutes())}
-            </MyText>
+            <View style={styles.subtitleContainer}>
+              <Image source={clockIcon} />
+              <MyText style={styles.subtitle}>
+                {leadingZeros(new Date(gameProps.date).getHours())}:
+                {leadingZeros(new Date(gameProps.date).getMinutes())}
+              </MyText>
+            </View>
           </View>
 
           <View style={styles.subtitleContainer}>
@@ -196,6 +205,6 @@ export function GameCardLarge({
           </View>
         </View>
       )}
-    </View>
+    </TouchableOpacity>
   );
 }

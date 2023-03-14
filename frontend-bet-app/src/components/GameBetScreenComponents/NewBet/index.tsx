@@ -14,58 +14,17 @@ import { styles } from "./style";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useContextValue } from "../../../services/contextElement";
-
-const games = [
-  {
-    id: 1,
-    amount: "250 apostas para este jogo",
-    date: "2023-06-06T12:00:00.000Z",
-    desc: "SEMI-FINAL",
-    team1: "Brasil",
-    team1Icon: "🇧🇷",
-    team2: "Argentina",
-    team2Icon: "🇦🇷",
-  },
-  {
-    id: 2,
-    amount: "250 apostas para este jogo",
-    date: "2023-06-06T12:00:00.000Z",
-    desc: "SEMI-FINAL",
-    team1: "Brasil",
-    team1Icon: "🇧🇷",
-    team2: "Argentina",
-    team2Icon: "🇦🇷",
-  },
-  {
-    id: 3,
-    amount: "250 apostas para este jogo",
-    date: "2023-06-06T12:00:00.000Z",
-    desc: "SEMI-FINAL",
-    team1: "Brasil",
-    team1Icon: "🇧🇷",
-    team2: "Argentina",
-    team2Icon: "🇦🇷",
-  },
-  {
-    id: 4,
-    amount: "250 apostas para este jogo",
-    date: "2023-06-06T12:00:00.000Z",
-    desc: "SEMI-FINAL",
-    team1: "Brasil",
-    team1Icon: "🇧🇷",
-    team2: "Argentina",
-    team2Icon: "🇦🇷",
-  },
-];
+import { IncomingGames } from "../../../services/provisoryData";
 
 export function NewBet() {
-  const [gameSelected, setGameSelected] = useState<number>(1);
-  const { isNewBetWindowCollapsed, setIsNewBetWindowCollapsed } =
-    useContextValue();
+  const [gameSelected, setGameSelected] = useState<string>("1");
+  const { setIsNewBetWindowCollapsed } = useContextValue();
   const navigation = useNavigation();
 
   function handleNewBet() {
-    const game = games.find((game) => game.id == gameSelected);
+    const game = IncomingGames.find(
+      (game) => game.id.toString() == gameSelected
+    );
 
     if (!game) return;
 
@@ -94,7 +53,7 @@ export function NewBet() {
         </View>
 
         <FlatList
-          data={games}
+          data={IncomingGames}
           keyExtractor={(item) => item.id.toString()}
           ListFooterComponent={<View style={{ height: 200 }} />}
           contentContainerStyle={{

@@ -8,9 +8,7 @@ import { useContextValue } from "../../services/contextElement";
 
 export function NewGroupOrBet() {
   const {
-    isNewBetWindowCollapsed,
     setIsNewBetWindowCollapsed,
-    isNewGroupWindowCollapsed,
     setIsNewGroupWindowCollapsed,
     setIsNewBetOrGroupWindowCollapsed,
   } = useContextValue();

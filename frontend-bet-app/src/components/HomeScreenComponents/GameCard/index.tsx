@@ -43,13 +43,13 @@ export function GameCard({
         });
       }}
     >
-      {desc && <MyText style={styles.descText}>{desc}</MyText>}
+      {desc != null && <MyText style={styles.descText}>{desc}</MyText>}
 
       <View style={styles.iconsContainer}>
         <View style={styles.teamContainer}>
           <MyText style={styles.iconText}>{team1Icon}</MyText>
           <MyText>{team1}</MyText>
-          {team1Score && team2Score && (
+          {team1Score != null && team2Score != null && (
             <MyText style={styles.teamScoreText}>{team1Score}</MyText>
           )}
         </View>
@@ -59,7 +59,7 @@ export function GameCard({
         <View style={styles.teamContainer}>
           <MyText style={styles.iconText}>{team2Icon}</MyText>
           <MyText>{team2}</MyText>
-          {team1Score && team2Score && (
+          {team1Score != null && team2Score != null && (
             <MyText style={styles.teamScoreText}>{team2Score}</MyText>
           )}
         </View>
