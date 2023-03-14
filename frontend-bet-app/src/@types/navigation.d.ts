@@ -1,6 +1,7 @@
 declare module "../routes/app.routes";
 
 export interface GameProps {
+  id: string;
   team1: string;
   team1Icon: string;
   team1Score?: number;
@@ -13,16 +14,17 @@ export interface GameProps {
 }
 
 export interface User {
-  id: number;
+  id: string;
   name: string;
   picture: ImageData;
   wins: number;
   points: number;
+  rank: number;
+  myGroups?: GroupProps[];
 }
 
 export interface GroupProps {
-  id: number;
-  id_admin: number;
+  id: string;
   name: string;
   prize?: string;
   participants: User[];
