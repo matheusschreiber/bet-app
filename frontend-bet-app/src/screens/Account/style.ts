@@ -47,4 +47,51 @@ export const styles = StyleSheet.create({
     gap: 10,
     alignItems: "center",
   },
+  contentContainer: {
+    backgroundColor: "white",
+    width: "90%",
+    paddingBottom: 150,
+    padding: 40,
+    marginTop: 50,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+  blockContainer: {
+    marginBottom: 50,
+    gap: 10,
+  },
+  lineContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  blockTitle: {
+    fontFamily: "montserratBold",
+    color: THEME.COLORS.DARK_GRAY,
+    fontSize: 18,
+  },
+  subtitle: {
+    fontFamily: "montserratBold",
+    color: THEME.COLORS.DARK_GRAY,
+  },
+  propText: {
+    fontFamily: "montserrat",
+    color: THEME.COLORS.DARK_GRAY,
+  },
+
+  switchContainer: {
+    borderWidth: 2,
+    borderColor: THEME.COLORS.BLUE,
+    borderRadius: 30,
+    marginLeft: 20,
+    height: 30,
+    width: 60,
+    padding: 0,
+  },
+  switch: {
+    height: 28,
+    width: 28,
+    borderRadius: 30,
+    backgroundColor: THEME.COLORS.BLUE,
+  },
 });
