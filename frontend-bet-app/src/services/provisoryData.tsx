@@ -8,74 +8,26 @@ import teste7 from "../../assets/teste7.jpg";
 import teste8 from "../../assets/teste8.jpg";
 import teste9 from "../../assets/teste9.jpg";
 
-const user1 = {
-  id: "2",
-  rank: 1,
-  name: "Anakyn Skywalker",
-  picture: teste2,
-  wins: 15,
-  points: 25,
-};
-const user2 = {
-  id: "3",
-  rank: 3,
-  name: "Karla",
-  picture: teste3,
-  wins: 15,
-  points: 15,
-};
-const user3 = {
-  id: "4",
-  rank: 4,
-  name: "Jonas",
-  picture: teste4,
-  wins: 15,
-  points: 10,
-};
-const user4 = {
-  id: "5",
-  rank: 5,
-  name: "Jorge",
-  picture: teste5,
-  wins: 15,
-  points: 7,
-};
-const user5 = {
-  id: "6",
-  rank: 6,
-  name: "Elisa",
-  picture: teste6,
-  wins: 15,
-  points: 7,
-};
-const user6 = {
-  id: "7",
-  rank: 7,
-  name: "George",
-  picture: teste7,
-  wins: 15,
-  points: 7,
-};
-const user7 = {
-  id: "8",
-  rank: 8,
-  name: "Klaus",
-  picture: teste8,
-  wins: 15,
-  points: 7,
-};
-const user8 = {
-  id: "9",
-  rank: 9,
-  name: "Louella",
-  picture: teste9,
-  wins: 15,
-  points: 7,
-};
+// prettier-ignore
+const user1 = {id: "2",  rank: 1,  name: "Lana",  picture: teste2,  wins: 15,  points: 25,};
+// prettier-ignore
+const user2 = {id: "3",  rank: 3,  name: "Carlos",  picture: teste3,  wins: 15,  points: 15,};
+// prettier-ignore
+const user3 = {id: "4",  rank: 4,  name: "Jonas",  picture: teste4,  wins: 15,  points: 10,};
+// prettier-ignore
+const user4 = {id: "5",  rank: 5,  name: "Jorge",  picture: teste5,  wins: 15,  points: 7,};
+// prettier-ignore
+const user5 = {id: "6",  rank: 6,  name: "Elisa",  picture: teste6,  wins: 15,  points: 7,};
+// prettier-ignore
+const user6 = {id: "7",  rank: 7,  name: "Luisa",  picture: teste7,  wins: 15,  points: 7,};
+// prettier-ignore
+const user7 = {id: "8",  rank: 8,  name: "Marcos",  picture: teste8,  wins: 15,  points: 7,};
+// prettier-ignore
+const user8 = {id: "9",  rank: 9,  name: "Ana",  picture: teste9,  wins: 15,  points: 7,};
 
 export const User = {
   id: "1",
-  name: "Skyler Walker",
+  name: "Fernanda",
   picture: teste,
   rank: 2,
   wins: 45,
@@ -111,13 +63,6 @@ export const Contacts = [
   { id: "3", name: "Jonas", picture: teste4, wins: 15, points: 10 },
   { id: "4", name: "Jorge", picture: teste5, wins: 15, points: 7 },
   { id: "5", name: "Elisa", picture: teste6, wins: 15, points: 7 },
-  { id: "7", name: "Elisa", picture: teste6, wins: 15, points: 7 },
-  { id: "8", name: "Elisa", picture: teste6, wins: 15, points: 7 },
-  { id: "9", name: "Elisa", picture: teste6, wins: 15, points: 7 },
-  { id: "10", name: "Elisa", picture: teste6, wins: 15, points: 7 },
-  { id: "11", name: "Elisa", picture: teste6, wins: 15, points: 7 },
-  { id: "12", name: "Elisa", picture: teste6, wins: 15, points: 7 },
-  { id: "13", name: "Elisa", picture: teste6, wins: 15, points: 7 },
 ];
 
 export const IncomingGames = [
@@ -263,4 +208,5 @@ export const GamesFinished = [
   },
 ];
 
-export const globalUsers = [User, user1, user2, user3, user4, user5];
+//prettier-ignore
+export const globalUsers = [User, user1, user2, user3, user4, user5, user6, user7, user8];
