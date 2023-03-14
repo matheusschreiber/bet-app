@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Add } from "../screens/Add";
 import { Games } from "../screens/Games";
 import { Account } from "../screens/Account";
 import { Home } from "../screens/Home";
@@ -17,7 +16,6 @@ export function AppRoutes() {
       <Screen name="rankings" component={Rankings} />
       <Screen name="games" component={Games} />
       <Screen name="account" component={Account} />
-      <Screen name="add" component={Add} />
       <Screen name="gamebet" component={GameBet} />
       <Screen name="group" component={Group} />
     </Navigator>

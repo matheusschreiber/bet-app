@@ -34,7 +34,6 @@ export declare global {
       home: undefined;
       games: undefined;
       account: undefined;
-      add: undefined;
       rankings: undefined;
       gamebet: GameProps;
       group: GroupProps;
