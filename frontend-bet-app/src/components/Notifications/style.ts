@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "flex-end",
-    zIndex: 1002,
+    zIndex: 102,
   },
   iconContainer: {
     width: "20%",

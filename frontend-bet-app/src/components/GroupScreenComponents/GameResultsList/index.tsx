@@ -1,4 +1,5 @@
-import { FlatList, ScrollView, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { FlatList, ScrollView, TouchableOpacity, View } from "react-native";
 import { GameProps } from "../../../@types/navigation";
 import { GamesFinished, User } from "../../../services/provisoryData";
 import { GameCardLarge } from "../../GameCardLarge";
@@ -8,6 +9,8 @@ interface InputProps {
 }
 
 export function GameResultsList({ games }: InputProps) {
+  const navigation = useNavigation();
+
   return (
     <FlatList
       data={games}
@@ -19,10 +22,14 @@ export function GameResultsList({ games }: InputProps) {
       ListFooterComponent={<View style={{ height: 400 }} />}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        <GameCardLarge
-          gameProps={item}
-          betsResults={User.myGroups[0].participants}
-        />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("gamebet", { ...item })}
+        >
+          <GameCardLarge
+            gameProps={item}
+            betsResults={User.myGroups[0].participants}
+          />
+        </TouchableOpacity>
       )}
     />
   );

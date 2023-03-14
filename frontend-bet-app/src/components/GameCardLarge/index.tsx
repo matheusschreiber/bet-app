@@ -45,10 +45,7 @@ export function GameCardLarge({
   }, []);
 
   return (
-    <TouchableOpacity
-      style={{ ...styles.mainContainer, ...parentStyle }}
-      onPress={() => navigation.navigate("gamebet", { ...gameProps })}
-    >
+    <View style={{ ...styles.mainContainer, ...parentStyle }}>
       <MyText style={styles.descText}>{gameProps.desc}</MyText>
       <View style={styles.middleContainer}>
         <View style={styles.teamContainer}>
@@ -205,6 +202,6 @@ export function GameCardLarge({
           </View>
         </View>
       )}
-    </TouchableOpacity>
+    </View>
   );
 }

@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 
 const contextDefaultValues = {
-  selected: 0,
+  selected: 1,
   setSelected: (n: number) => {},
   isBetting: false,
   setIsBetting: (b: boolean) => {},
