@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
 
   modalContainer: {
     position: "absolute",
-    bottom: 300,
+    bottom: 50,
     right: 30,
     zIndex: 100,
     backgroundColor: "white",

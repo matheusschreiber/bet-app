@@ -94,33 +94,19 @@ const users = [
 
 export function GameResultsList() {
   return (
-    <ScrollView
-      style={styles.mainContainer}
-      showsHorizontalScrollIndicator={false}
-    >
-      <FlatList
-        horizontal
-        data={[]}
-        renderItem={() => <></>}
-        contentContainerStyle={{
-          width: "90%",
-          marginLeft: "5%",
-        }}
-        ListEmptyComponent={
-          <FlatList
-            data={games}
-            contentContainerStyle={{
-              gap: 20,
-            }}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <GameCardLarge gameProps={item} betsResults={users} />
-            )}
-          />
-        }
-      />
-
-      <View style={{ height: 400 }} />
-    </ScrollView>
+    <FlatList
+      data={games}
+      contentContainerStyle={{
+        gap: 20,
+        width: "90%",
+        marginLeft: "5%",
+      }}
+      showsVerticalScrollIndicator={false}
+      ListFooterComponent={<View style={{ height: 400 }} />}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) => (
+        <GameCardLarge gameProps={item} betsResults={users} />
+      )}
+    />
   );
 }

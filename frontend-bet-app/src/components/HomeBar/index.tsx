@@ -98,10 +98,12 @@ export function HomeBar() {
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
-                setSelected(item.key);
                 if (item.page == "add")
                   setIsNewBetOrGroupWindowCollapsed(false);
-                else navigation.navigate(item.page as any);
+                else {
+                  setSelected(item.key);
+                  navigation.navigate(item.page as any);
+                }
               }}
             >
               <Image source={checkSelected(item, item.key)} />

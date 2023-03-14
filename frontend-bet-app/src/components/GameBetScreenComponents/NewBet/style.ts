@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     top: 0,
     backgroundColor: "rgba(0,0,0,0.7)",
-    zIndex: 1001,
+    zIndex: 2000,
   },
   titleCard: {
     fontSize: 20,

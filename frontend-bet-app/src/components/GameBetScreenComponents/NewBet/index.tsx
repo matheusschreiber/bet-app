@@ -93,39 +93,29 @@ export function NewBet() {
           </TouchableOpacity>
         </View>
 
-        <ScrollView>
-          <FlatList
-            horizontal
-            data={[]}
-            renderItem={() => <></>}
-            contentContainerStyle={{ alignItems: "center", width: "100%" }}
-            ListEmptyComponent={
-              <FlatList
-                data={games}
-                keyExtractor={(item) => item.id.toString()}
-                contentContainerStyle={{
-                  alignItems: "center",
-                  width: "100%",
-                  gap: 40,
-                }}
-                renderItem={({ item }) => (
-                  <TouchableOpacity onPress={() => setGameSelected(item.id)}>
-                    <GameCardLarge
-                      gameProps={item}
-                      parentStyle={
-                        gameSelected === item.id
-                          ? styles.gameCardSelected
-                          : undefined
-                      }
-                    />
-                  </TouchableOpacity>
-                )}
+        <FlatList
+          data={games}
+          keyExtractor={(item) => item.id.toString()}
+          ListFooterComponent={<View style={{ height: 200 }} />}
+          contentContainerStyle={{
+            alignItems: "center",
+            width: "100%",
+            gap: 40,
+          }}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => setGameSelected(item.id)}
+              activeOpacity={0.9}
+            >
+              <GameCardLarge
+                gameProps={item}
+                parentStyle={
+                  gameSelected === item.id ? styles.gameCardSelected : undefined
+                }
               />
-            }
-          />
-
-          <View style={{ height: 200 }} />
-        </ScrollView>
+            </TouchableOpacity>
+          )}
+        />
       </View>
 
       <TouchableOpacity
