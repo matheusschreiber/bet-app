@@ -29,6 +29,7 @@ export function NewBet() {
     if (!game) return;
 
     navigation.navigate("gamebet", {
+      id: game.id,
       team1: game.team1,
       team1Icon: game.team1Icon,
       team2: game.team2,
