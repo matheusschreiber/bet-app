@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     height: "100%",
+    paddingTop: 50,
   },
   backgroundContainer: {
     position: "absolute",
@@ -13,11 +14,7 @@ export const styles = StyleSheet.create({
     height: 300,
     zIndex: -1,
   },
-  topContainer: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "flex-end",
-  },
+
   iconContainer: {
     width: "20%",
     flexDirection: "row",

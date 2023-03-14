@@ -10,6 +10,7 @@ import ticketIcon from "../../../assets/icons/ticket_profile.png";
 import userPhoto from "../../../assets/teste.jpg";
 import { PlayerList } from "../../components/GroupScreenComponents/PlayersList";
 import { globalUsers, User } from "../../services/provisoryData";
+import { Notifications } from "../../components/Notifications";
 
 export function Rankings() {
   return (
@@ -43,6 +44,7 @@ export function Rankings() {
       </View>
 
       <HomeBar />
+      <Notifications />
     </View>
   );
 }

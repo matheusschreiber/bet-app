@@ -9,6 +9,7 @@ import { leadingZeros } from "../../components/HomeScreenComponents/GameCard";
 import { useState } from "react";
 import { GameResultsList } from "../../components/GroupScreenComponents/GameResultsList";
 import { GamesFinished, IncomingGames } from "../../services/provisoryData";
+import { Notifications } from "../../components/Notifications";
 
 export function Games() {
   const [listSelected, setListSelected] = useState<number>(1);
@@ -68,6 +69,7 @@ export function Games() {
 
       {listSelected == 2 && <GameResultsList games={GamesFinished} />}
 
+      <Notifications />
       <HomeBar />
     </View>
   );

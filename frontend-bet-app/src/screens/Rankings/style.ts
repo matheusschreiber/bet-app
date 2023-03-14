@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 100,
-    marginTop: 60,
+    marginTop: 80,
     elevation: 20,
   },
   starIconContainerLarge: {
