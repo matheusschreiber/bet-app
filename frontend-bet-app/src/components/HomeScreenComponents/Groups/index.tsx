@@ -4,7 +4,7 @@ import { GroupCard } from "../GroupCard";
 import { styles } from "./style";
 import { MyText } from "../../MyText";
 import { useEffect } from "react";
-import { User } from "../../../services/provisoryData";
+import { mainUser } from "../../../services/provisoryData";
 
 export function Groups() {
   useEffect(() => {
@@ -24,7 +24,7 @@ export function Groups() {
         renderItem={() => <></>}
         ListEmptyComponent={
           <FlatList
-            data={User.myGroups}
+            data={mainUser.myGroups}
             keyExtractor={(item) => item.id.toString()}
             style={{ width: "100%" }}
             renderItem={({ item }) => (

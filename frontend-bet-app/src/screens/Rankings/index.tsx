@@ -9,7 +9,7 @@ import ticketIcon from "../../../assets/icons/ticket_profile.png";
 
 import userPhoto from "../../../assets/teste.jpg";
 import { PlayerList } from "../../components/GroupScreenComponents/PlayersList";
-import { globalUsers, User } from "../../services/provisoryData";
+import { globalUsers, mainUser } from "../../services/provisoryData";
 import { Notifications } from "../../components/Notifications";
 
 export function Rankings() {
@@ -25,22 +25,22 @@ export function Rankings() {
         <View style={styles.rightContainer}>
           <MyText style={styles.rankingTitle}>RANKING GLOBAL</MyText>
           <View style={styles.infoContainer}>
-            <MyText>#{User.rank}</MyText>
+            <MyText>#{mainUser.rank}</MyText>
             <Image style={styles.userProfilePicture} source={userPhoto} />
             <View style={styles.infoIconContainer}>
               <Image source={ticketIcon} />
-              <MyText>{User.wins}</MyText>
+              <MyText>{mainUser.wins}</MyText>
             </View>
             <View style={styles.infoIconContainer}>
               <Image source={starIcon} />
-              <MyText>{User.points.toLocaleString("pt-BR")}</MyText>
+              <MyText>{mainUser.points.toLocaleString("pt-BR")}</MyText>
             </View>
           </View>
         </View>
       </View>
 
       <View style={styles.listContainer}>
-        <PlayerList participants={globalUsers} highlight={User} />
+        <PlayerList participants={globalUsers} highlight={mainUser} />
       </View>
 
       <HomeBar />

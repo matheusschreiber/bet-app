@@ -14,6 +14,7 @@ export function leadingZeros(num: number) {
 }
 
 export function GameCard({
+  id,
   team1,
   team1Icon,
   team1Score,
@@ -21,8 +22,8 @@ export function GameCard({
   team2Icon,
   team2Score,
   date,
-  amount,
   desc,
+  bets,
 }: GameProps) {
   const navigation = useNavigation();
 
@@ -31,6 +32,7 @@ export function GameCard({
       style={styles.mainContainer}
       onPress={() => {
         navigation.navigate("gamebet", {
+          id,
           team1,
           team1Icon,
           team1Score,
@@ -38,7 +40,7 @@ export function GameCard({
           team2Icon,
           team2Score,
           date,
-          amount,
+          bets,
           desc,
         });
       }}
@@ -101,7 +103,9 @@ export function GameCard({
       {!team1Score && !team2Score && (
         <View style={styles.amountContainer}>
           <Image source={ticketIcon} />
-          <MyText style={styles.amountText}>{amount}</MyText>
+          <MyText style={styles.amountText}>
+            {bets?.length} apostas para esse jogo
+          </MyText>
         </View>
       )}
     </TouchableOpacity>

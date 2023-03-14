@@ -8,7 +8,7 @@ import { MyText } from "../../components/MyText";
 import { Statistics } from "../../components/HomeScreenComponents/Statistics";
 import { Games } from "../../components/HomeScreenComponents/Games";
 import { Notifications } from "../../components/Notifications";
-import { User } from "../../services/provisoryData";
+import { mainUser } from "../../services/provisoryData";
 
 export function Home() {
   return (
@@ -19,7 +19,7 @@ export function Home() {
 
           <View style={styles.profileContainer}>
             <Image source={imagemTeste} style={styles.profilePicture} />
-            <MyText style={styles.profileName}>{User.name}</MyText>
+            <MyText style={styles.profileName}>{mainUser.name}</MyText>
           </View>
 
           <Statistics />

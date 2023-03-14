@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
-import { FlatList, ScrollView, TouchableOpacity, View } from "react-native";
+import { FlatList, TouchableOpacity, View } from "react-native";
 import { GameProps } from "../../../@types/navigation";
-import { GamesFinished, User } from "../../../services/provisoryData";
+import { bets } from "../../../services/provisoryData";
 import { GameCardLarge } from "../../GameCardLarge";
 
 interface InputProps {
@@ -27,7 +27,7 @@ export function GameResultsList({ games }: InputProps) {
         >
           <GameCardLarge
             gameProps={item}
-            betsResults={User.myGroups[0].participants}
+            betsResults={bets.filter((bet) => bet.match === item.id)}
           />
         </TouchableOpacity>
       )}

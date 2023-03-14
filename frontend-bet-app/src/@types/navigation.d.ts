@@ -9,8 +9,8 @@ export interface GameProps {
   team2Icon: string;
   team2Score?: number;
   date: string;
-  amount: string;
   desc?: string;
+  bets?: Bet[];
 }
 
 export interface User {
@@ -21,6 +21,20 @@ export interface User {
   points: number;
   rank: number;
   myGroups?: GroupProps[];
+  bets?: Bet[];
+}
+
+export interface Bet {
+  id: string;
+  user: User;
+  match: string;
+  status: string;
+  score_1: number;
+  score_2: number;
+  date: string;
+  score_win?: boolean;
+  result_win?: boolean;
+  points?: number;
 }
 
 export interface GroupProps {

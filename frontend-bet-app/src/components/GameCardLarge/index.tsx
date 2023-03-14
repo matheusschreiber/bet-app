@@ -1,5 +1,5 @@
 import { FlatList, Image, TouchableOpacity, View } from "react-native";
-import { GameProps, User } from "../../@types/navigation";
+import { Bet, GameProps, User } from "../../@types/navigation";
 import { THEME } from "../../theme";
 import { MyText } from "../MyText";
 import { styles } from "./style";
@@ -21,7 +21,7 @@ import { useNavigation } from "@react-navigation/native";
 interface GameCardLargeProps {
   gameProps: GameProps;
   //TODO: change to bets[]
-  betsResults?: User[];
+  betsResults?: Bet[];
   parentStyle?: Object;
   //this parent style is for the selection on new bet screen
 }
@@ -147,20 +147,35 @@ export function GameCardLarge({
                 renderItem={({ item }) => (
                   <View style={styles.betContainer}>
                     <View style={styles.betUserContainer}>
-                      <Image style={styles.userPhoto} source={item.picture} />
-                      <MyText>{item.name}</MyText>
+                      <Image
+                        style={styles.userPhoto}
+                        source={item.user.picture}
+                      />
+                      <MyText>{item.user.name}</MyText>
                     </View>
-                    {/* logic to count wins/losses */}
-                    <View style={styles.winIcon}>
-                      <Image style={styles.icon} source={winIcon} />
-                    </View>
-                    <View style={styles.loseIcon}>
-                      <Image style={styles.icon} source={loseIcon} />
-                    </View>
+                    {item.result_win ? (
+                      <View style={styles.winIcon}>
+                        <Image style={styles.icon} source={winIcon} />
+                      </View>
+                    ) : (
+                      <View style={styles.loseIcon}>
+                        <Image style={styles.icon} source={loseIcon} />
+                      </View>
+                    )}
+
+                    {item.score_win ? (
+                      <View style={styles.winIcon}>
+                        <Image style={styles.icon} source={winIcon} />
+                      </View>
+                    ) : (
+                      <View style={styles.loseIcon}>
+                        <Image style={styles.icon} source={loseIcon} />
+                      </View>
+                    )}
 
                     <View style={styles.pointsContainer}>
                       <Image source={starIcon} />
-                      <MyText>75</MyText>
+                      <MyText>{item.points}</MyText>
                     </View>
                   </View>
                 )}
@@ -198,7 +213,9 @@ export function GameCardLarge({
 
           <View style={styles.subtitleContainer}>
             <Image source={ticketIcon} />
-            <MyText style={styles.subtitle}>{gameProps.amount}</MyText>
+            <MyText style={styles.subtitle}>
+              {gameProps.bets?.length} apostas para esse jogo
+            </MyText>
           </View>
         </View>
       )}

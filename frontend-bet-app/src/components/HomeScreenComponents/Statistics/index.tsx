@@ -4,7 +4,7 @@ import trophy from "../../../../assets/icons/trophy_profile.png";
 import ticket from "../../../../assets/icons/ticket_profile.png";
 import star from "../../../../assets/icons/star_profile.png";
 import { MyText } from "../../MyText";
-import { User } from "../../../services/provisoryData";
+import { mainUser } from "../../../services/provisoryData";
 
 export function Statistics() {
   return (
@@ -14,7 +14,7 @@ export function Statistics() {
           <Image source={star} />
         </View>
         <MyText style={styles.title}>
-          {User.points.toLocaleString("pt-BR")}
+          {mainUser.points.toLocaleString("pt-BR")}
         </MyText>
         <MyText style={styles.subtitle}>pontos</MyText>
       </View>
@@ -23,7 +23,14 @@ export function Statistics() {
         <View style={styles.ticketIcon}>
           <Image source={ticket} />
         </View>
-        <MyText style={styles.title}>{User.bets.length} apostas</MyText>
+        <MyText style={styles.title}>
+          {mainUser.bets?.length}
+          {mainUser.bets
+            ? mainUser.bets?.length > 1
+              ? " apostas"
+              : " aposta"
+            : "0 apostas"}
+        </MyText>
         <MyText style={styles.subtitle}>em andamento</MyText>
       </View>
 
@@ -31,7 +38,7 @@ export function Statistics() {
         <View style={styles.trophyIcon}>
           <Image source={trophy} />
         </View>
-        <MyText style={styles.title}>{User.wins} vitórias</MyText>
+        <MyText style={styles.title}>{mainUser.wins} vitórias</MyText>
         <MyText style={styles.subtitle}>totais</MyText>
       </View>
     </View>

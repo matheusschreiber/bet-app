@@ -124,4 +124,65 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 20,
   },
+
+  headerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    marginTop: 10,
+  },
+  headerText: {
+    fontFamily: "montserratLight",
+    fontSize: 10,
+  },
+  headerTextName: {
+    fontFamily: "montserratLight",
+    fontSize: 10,
+    width: 150,
+    textAlign: "center",
+  },
+
+  betContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+  },
+  betUserContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    width: 150,
+  },
+  userPhoto: {
+    borderRadius: 100,
+    height: 40,
+    width: 40,
+    borderColor: THEME.COLORS.GREEN,
+    borderWidth: 2,
+  },
+  winIcon: {
+    backgroundColor: THEME.COLORS.LIGHT_GREEN,
+    width: 30,
+    height: 30,
+    borderRadius: 20,
+    alignItems: "center",
+  },
+  loseIcon: {
+    backgroundColor: THEME.COLORS.LIGHT_RED,
+    width: 30,
+    height: 30,
+    borderRadius: 20,
+    alignItems: "center",
+  },
+  icon: {
+    flex: 1,
+    width: 15,
+    height: 15,
+    resizeMode: "contain",
+  },
+  pointsContainer: {
+    flexDirection: "row",
+    gap: 5,
+  },
 });
