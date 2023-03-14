@@ -30,8 +30,8 @@ export function Home() {
 
           <View style={{ width: "100%", height: 150 }}></View>
         </View>
+        <Notifications />
       </ScrollView>
-      <Notifications />
       <HomeBar />
     </>
   );

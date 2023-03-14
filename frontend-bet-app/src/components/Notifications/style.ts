@@ -11,10 +11,11 @@ export const styles = StyleSheet.create({
   },
   topContainer: {
     position: "absolute",
+    top: 0,
     width: "100%",
     flexDirection: "row",
     justifyContent: "flex-end",
-    zIndex: 2000,
+    zIndex: 1002,
   },
   iconContainer: {
     width: "20%",

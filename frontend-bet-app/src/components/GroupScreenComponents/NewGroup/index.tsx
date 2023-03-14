@@ -16,16 +16,20 @@ import prizeIcon from "../../../../assets/icons/prize.png";
 import { useContextValue } from "../../../services/contextElement";
 import { Contacts } from "../../../services/provisoryData";
 
-export function NewGroup() {
+interface NewGroupProps {
+  phase?: number;
+}
+
+export function NewGroup({ phase }: NewGroupProps) {
   const [name, setName] = useState<string>("");
   const [userSearch, setUserSearch] = useState<string>("");
-  const [formPhase, setFormPhase] = useState<number>(1);
-  const [usersInvited, setUsersInvited] = useState<number[]>([]);
+  const [formPhase, setFormPhase] = useState<number>(phase ? phase : 1);
+  const [usersInvited, setUsersInvited] = useState<string[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
   const [prize, setPrize] = useState<string>("");
   const { setIsNewGroupWindowCollapsed } = useContextValue();
 
-  function handleInvite(id: number) {
+  function handleInvite(id: string) {
     let aux = [...usersInvited];
     if (usersInvited.includes(id)) {
       aux.splice(aux.indexOf(id), 1);
@@ -85,52 +89,59 @@ export function NewGroup() {
               Seus contatos do telefone
             </MyText>
 
-            <FlatList
-              data={Contacts.filter((user) =>
-                user.name
-                  .toUpperCase()
-                  .trim()
-                  .normalize("NFD")
-                  .replace(/\p{Diacritic}/gu, "")
-                  .includes(
-                    userSearch
-                      .toUpperCase()
-                      .trim()
-                      .normalize("NFD")
-                      .replace(/\p{Diacritic}/gu, "")
-                  )
-              )}
-              extraData={refresh}
-              keyExtractor={(item) => item.id.toString()}
-              contentContainerStyle={{ paddingTop: 20, gap: 10 }}
-              renderItem={({ item }) => (
-                <View style={styles.userItem}>
-                  <View style={styles.userPhotoAndNameContainer}>
-                    <Image style={styles.userPhoto} source={item.picture} />
-                    <MyText style={styles.userName}>{item.name}</MyText>
-                  </View>
-                  <TouchableOpacity onPress={() => handleInvite(item.id)}>
-                    <View style={styles.iconContainer}>
-                      {!usersInvited.includes(item.id) ? (
-                        <Image
-                          style={styles.inviteIcon}
-                          source={addGreenIcon}
-                        />
-                      ) : (
-                        <Image
-                          style={styles.checkIcon}
-                          source={greenCheckIcon}
-                        />
-                      )}
+            <TouchableOpacity activeOpacity={1}>
+              <FlatList
+                data={Contacts.filter((user) =>
+                  user.name
+                    .toUpperCase()
+                    .trim()
+                    .normalize("NFD")
+                    .replace(/\p{Diacritic}/gu, "")
+                    .includes(
+                      userSearch
+                        .toUpperCase()
+                        .trim()
+                        .normalize("NFD")
+                        .replace(/\p{Diacritic}/gu, "")
+                    )
+                )}
+                extraData={refresh}
+                keyExtractor={(item) => item.id.toString()}
+                contentContainerStyle={{ paddingTop: 20, gap: 10 }}
+                renderItem={({ item }) => (
+                  <View style={styles.userItem}>
+                    <View style={styles.userPhotoAndNameContainer}>
+                      <Image style={styles.userPhoto} source={item.picture} />
+                      <MyText style={styles.userName}>{item.name}</MyText>
                     </View>
-                  </TouchableOpacity>
-                </View>
-              )}
-            />
+                    <TouchableOpacity onPress={() => handleInvite(item.id)}>
+                      <View style={styles.iconContainer}>
+                        {!usersInvited.includes(item.id) ? (
+                          <Image
+                            style={styles.inviteIcon}
+                            source={addGreenIcon}
+                          />
+                        ) : (
+                          <Image
+                            style={styles.checkIcon}
+                            source={greenCheckIcon}
+                          />
+                        )}
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              />
+            </TouchableOpacity>
           </View>
 
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => setFormPhase(3)}>
+            <TouchableOpacity
+              onPress={() => {
+                if (!phase) setFormPhase(3);
+                else setIsNewGroupWindowCollapsed(true);
+              }}
+            >
               <MyText style={styles.buttonText}>Continuar</MyText>
             </TouchableOpacity>
           </View>
