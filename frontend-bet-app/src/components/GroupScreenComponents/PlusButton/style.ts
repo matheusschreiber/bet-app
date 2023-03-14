@@ -4,7 +4,7 @@ import { THEME } from "../../../theme";
 export const styles = StyleSheet.create({
   buttonContainer: {
     position: "absolute",
-    bottom: 270,
+    bottom: 20,
     right: 10,
     height: 100,
     width: 100,
