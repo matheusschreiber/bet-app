@@ -19,6 +19,7 @@ import teste3 from "../../../../assets/teste3.jpg";
 import teste4 from "../../../../assets/teste4.jpg";
 import teste5 from "../../../../assets/teste5.jpg";
 import teste6 from "../../../../assets/teste6.jpg";
+import { useContextValue } from "../../../services/contextElement";
 
 const users = [
   { id: 1, name: "João", picture: teste2, wins: 15, points: 25 },
@@ -35,6 +36,7 @@ export function NewGroup() {
   const [usersInvited, setUsersInvited] = useState<number[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
   const [prize, setPrize] = useState<string>("");
+  const { setIsNewGroupWindowCollapsed } = useContextValue();
 
   function handleInvite(id: number) {
     let aux = [...usersInvited];
@@ -48,7 +50,10 @@ export function NewGroup() {
     <View style={styles.mainContainer}>
       <View style={styles.topContainer}>
         <MyText style={styles.containerTitle}>Novo grupo de Aposta</MyText>
-        <TouchableOpacity style={styles.closeIconContainer}>
+        <TouchableOpacity
+          style={styles.closeIconContainer}
+          onPress={() => setIsNewGroupWindowCollapsed(true)}
+        >
           <Image style={styles.closeIcon} source={closeIcon} />
         </TouchableOpacity>
       </View>

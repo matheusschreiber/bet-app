@@ -12,6 +12,8 @@ import gamesSelected from "../../../assets/icons/games_selected.png";
 import accountSelected from "../../../assets/icons/account_selected.png";
 import { useNavigation } from "@react-navigation/native";
 import { NewGroupOrBet } from "../NewGroupOrBet";
+import { NewBet } from "../GameBetScreenComponents/NewBet";
+import { NewGroup } from "../GroupScreenComponents/NewGroup";
 
 interface ItemProps {
   key: number;
@@ -24,6 +26,10 @@ export function HomeBar() {
   const {
     selected,
     setSelected,
+    isNewBetWindowCollapsed,
+    setIsNewBetWindowCollapsed,
+    isNewGroupWindowCollapsed,
+    setIsNewGroupWindowCollapsed,
     isNewBetOrGroupWindowCollapsed,
     setIsNewBetOrGroupWindowCollapsed,
   } = useContextValue();
@@ -47,8 +53,11 @@ export function HomeBar() {
     { key: 5, icon: account, iconSelected: accountSelected, page: "account" },
   ];
 
-  //FIXME: reduce code here
-  if (!isNewBetOrGroupWindowCollapsed)
+  if (
+    !isNewBetOrGroupWindowCollapsed ||
+    !isNewBetWindowCollapsed ||
+    !isNewGroupWindowCollapsed
+  )
     return (
       <View style={styles.mainContainer}>
         <View style={styles.topContainer}>
@@ -61,9 +70,11 @@ export function HomeBar() {
               <TouchableOpacity
                 onPress={() => {
                   setSelected(item.key);
-                  if (item.page == "add")
+                  if (item.page == "add") {
                     setIsNewBetOrGroupWindowCollapsed(false);
-                  else navigation.navigate(item.page as any);
+                    setIsNewBetWindowCollapsed(true);
+                    setIsNewGroupWindowCollapsed(true);
+                  } else navigation.navigate(item.page as any);
                 }}
               >
                 <Image source={checkSelected(item, item.key)} />
@@ -71,7 +82,9 @@ export function HomeBar() {
             )}
           />
         </View>
-        <NewGroupOrBet />
+        {!isNewBetOrGroupWindowCollapsed && <NewGroupOrBet />}
+        {!isNewBetWindowCollapsed && <NewBet />}
+        {!isNewGroupWindowCollapsed && <NewGroup />}
       </View>
     );
   else

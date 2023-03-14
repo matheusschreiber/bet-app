@@ -7,28 +7,46 @@ import ticketIcon from "../../../assets/icons/ticket_profile.png";
 import { useContextValue } from "../../services/contextElement";
 
 export function NewGroupOrBet() {
-  const { setIsNewBetOrGroupWindowCollapsed } = useContextValue();
+  const {
+    isNewBetWindowCollapsed,
+    setIsNewBetWindowCollapsed,
+    isNewGroupWindowCollapsed,
+    setIsNewGroupWindowCollapsed,
+    setIsNewBetOrGroupWindowCollapsed,
+  } = useContextValue();
 
   return (
-    <View
+    <TouchableOpacity
       style={styles.overlayContainer}
-      // onPress={() => setIsNewBetOrGroupWindowCollapsed(true)}
+      onPress={() => setIsNewBetOrGroupWindowCollapsed(true)}
     >
       <View style={styles.mainContainer}>
-        <TouchableOpacity style={styles.itemContainer}>
+        <TouchableOpacity
+          style={styles.itemContainer}
+          onPress={() => {
+            setIsNewBetOrGroupWindowCollapsed(true);
+            setIsNewGroupWindowCollapsed(false);
+          }}
+        >
           <View style={styles.iconContainer}>
             <Image source={newGroupIcon} />
           </View>
           <MyText style={styles.itemTitle}>Criar novo Grupo de Apostas</MyText>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.itemContainer}>
+        <TouchableOpacity
+          style={styles.itemContainer}
+          onPress={() => {
+            setIsNewBetOrGroupWindowCollapsed(true);
+            setIsNewBetWindowCollapsed(false);
+          }}
+        >
           <View style={styles.iconContainer}>
             <Image source={ticketIcon} />
           </View>
           <MyText style={styles.itemTitle}>Nova aposta</MyText>
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
