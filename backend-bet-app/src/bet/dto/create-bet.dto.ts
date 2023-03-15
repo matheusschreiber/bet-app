@@ -1,4 +1,4 @@
-import { IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsBoolean, IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateBetDto {
   @IsNotEmpty()
@@ -25,4 +25,16 @@ export class CreateBetDto {
 
   @IsNotEmpty()
   date: Date;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  score_win: boolean;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  result_win: boolean;
+
+  @IsNotEmpty()
+  @IsNumber()
+  points: number;
 }
