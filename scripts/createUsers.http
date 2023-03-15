@@ -1,0 +1,189 @@
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Jovelino Freitas",
+  "picture": "https://randomuser.me/api/portraits/men/6.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Belina Nunes",
+  "picture": "https://randomuser.me/api/portraits/women/72.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Mauri Nunes",
+  "picture": "https://randomuser.me/api/portraits/men/84.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Tânia Santos",
+  "picture": "https://randomuser.me/api/portraits/women/11.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Heloísa Santos",
+  "picture": "https://randomuser.me/api/portraits/women/65.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Meire da Rocha",
+  "picture": "https://randomuser.me/api/portraits/women/51.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Sansão da Conceição",
+  "picture": "https://randomuser.me/api/portraits/men/86.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Suly Aragão",
+  "picture": "https://randomuser.me/api/portraits/women/90.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Hildegardo da Luz",
+  "picture": "https://randomuser.me/api/portraits/men/37.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Basílio Caldeira",
+  "picture": "https://randomuser.me/api/portraits/men/19.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Gualter Campos",
+  "picture": "https://randomuser.me/api/portraits/men/27.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Fernão de Magalhães Martins",
+  "picture": "https://randomuser.me/api/portraits/men/52.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Isaltino Pires",
+  "picture": "https://randomuser.me/api/portraits/men/73.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Lemuel Rodrigues",
+  "picture": "https://randomuser.me/api/portraits/men/86.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Sina Jesus",
+  "picture": "https://randomuser.me/api/portraits/women/33.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Marinei da Cruz",
+  "picture": "https://randomuser.me/api/portraits/women/19.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Lúcio Martins",
+  "picture": "https://randomuser.me/api/portraits/men/1.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Martinho Fogaça",
+  "picture": "https://randomuser.me/api/portraits/men/67.jpg"
+}
+
+###
+
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Lurdes da Rocha",
+  "picture": "https://randomuser.me/api/portraits/women/46.jpg"
+}
+
+###
