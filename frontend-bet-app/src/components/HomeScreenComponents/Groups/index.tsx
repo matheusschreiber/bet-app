@@ -3,13 +3,14 @@ import { GroupCard } from "../GroupCard";
 
 import { styles } from "./style";
 import { MyText } from "../../MyText";
-import { useEffect } from "react";
-import { mainUser } from "../../../services/provisoryData";
+import { useContextValue } from "../../../services/contextElement";
 
 export function Groups() {
-  useEffect(() => {
-    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-  }, []);
+  // useEffect(() => {
+  //   LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+  // }, []);
+
+  const { user } = useContextValue();
 
   return (
     <View style={styles.groupsContainer}>
@@ -24,14 +25,17 @@ export function Groups() {
         renderItem={() => <></>}
         ListEmptyComponent={
           <FlatList
-            data={mainUser.myGroups}
-            keyExtractor={(item) => item.id.toString()}
+            data={(user as any).groups}
+            keyExtractor={(item) => item.group.id}
             style={{ width: "100%" }}
             renderItem={({ item }) => (
               <GroupCard
-                name={item.name}
-                participants={item.participants}
-                amount={`${item.participants.length} pessoas`}
+                id={item.group.id}
+                idAdmin={item.group.id_admin}
+                name={item.group.name}
+                participants={item.group.participants}
+                amount={`${item.group.participants.length} pessoas`}
+                prize={item.group.prize}
               />
             )}
           />

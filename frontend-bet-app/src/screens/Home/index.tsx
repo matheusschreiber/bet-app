@@ -2,15 +2,16 @@ import { Image, View, ScrollView } from "react-native";
 import { HomeBar } from "../../components/HomeBar";
 import { Groups } from "../../components/HomeScreenComponents/Groups";
 import background from "../../../assets/home_background.png";
-import imagemTeste from "../../../assets/teste.jpg";
 import { styles } from "./style";
 import { MyText } from "../../components/MyText";
 import { Statistics } from "../../components/HomeScreenComponents/Statistics";
 import { Games } from "../../components/HomeScreenComponents/Games";
 import { Notifications } from "../../components/Notifications";
-import { mainUser } from "../../services/provisoryData";
+import { useContextValue } from "../../services/contextElement";
 
 export function Home() {
+  const { user } = useContextValue();
+
   return (
     <>
       <ScrollView>
@@ -18,8 +19,11 @@ export function Home() {
           <Image source={background} style={styles.backgroundContainer} />
 
           <View style={styles.profileContainer}>
-            <Image source={imagemTeste} style={styles.profilePicture} />
-            <MyText style={styles.profileName}>{mainUser.name}</MyText>
+            <Image
+              source={{ uri: user.picture }}
+              style={styles.profilePicture}
+            />
+            <MyText style={styles.profileName}>{user.name}</MyText>
           </View>
 
           <Statistics />

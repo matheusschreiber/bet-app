@@ -5,26 +5,20 @@ import calendarIcon from "../../../../assets/icons/calendar.png";
 import ticketIcon from "../../../../assets/icons/ticket.png";
 import clockIcon from "../../../../assets/icons/clock.png";
 import { useNavigation } from "@react-navigation/native";
-import { GameProps } from "../../../@types/navigation";
+import { Bet, GameProps } from "../../../@types/navigation";
 import { MyText } from "../../MyText";
+
+interface GameCardProps {
+  game: GameProps;
+  bets: { bet: Bet }[];
+}
 
 export function leadingZeros(num: number) {
   if (num < 10) return "0" + num;
   else return num;
 }
 
-export function GameCard({
-  id,
-  team1,
-  team1Icon,
-  team1Score,
-  team2,
-  team2Icon,
-  team2Score,
-  date,
-  desc,
-  bets,
-}: GameProps) {
+export function GameCard({ game, bets }: GameCardProps) {
   const navigation = useNavigation();
 
   return (
@@ -32,44 +26,38 @@ export function GameCard({
       style={styles.mainContainer}
       onPress={() => {
         navigation.navigate("gamebet", {
-          id,
-          team1,
-          team1Icon,
-          team1Score,
-          team2,
-          team2Icon,
-          team2Score,
-          date,
+          game,
           bets,
-          desc,
         });
       }}
     >
-      {desc != null && <MyText style={styles.descText}>{desc}</MyText>}
+      {game.desc != null && (
+        <MyText style={styles.descText}>{game.desc}</MyText>
+      )}
 
       <View style={styles.iconsContainer}>
         <View style={styles.teamContainer}>
-          <MyText style={styles.iconText}>{team1Icon}</MyText>
-          <MyText>{team1}</MyText>
-          {team1Score != null && team2Score != null && (
-            <MyText style={styles.teamScoreText}>{team1Score}</MyText>
+          <MyText style={styles.iconText}>{game.team_1_icon}</MyText>
+          <MyText>{game.team_1_name}</MyText>
+          {game.team_1_score != null && game.team_2_score != null && (
+            <MyText style={styles.teamScoreText}>{game.team_1_score}</MyText>
           )}
         </View>
 
         <MyText style={styles.vsText}>VS</MyText>
 
         <View style={styles.teamContainer}>
-          <MyText style={styles.iconText}>{team2Icon}</MyText>
-          <MyText>{team2}</MyText>
-          {team1Score != null && team2Score != null && (
-            <MyText style={styles.teamScoreText}>{team2Score}</MyText>
+          <MyText style={styles.iconText}>{game.team_2_icon}</MyText>
+          <MyText>{game.team_2_name}</MyText>
+          {game.team_1_score != null && game.team_2_score != null && (
+            <MyText style={styles.teamScoreText}>{game.team_2_score}</MyText>
           )}
         </View>
       </View>
 
       <View
         style={
-          !team1Score && !team2Score
+          !game.team_1_score && !game.team_2_score
             ? {
                 ...styles.infoContainer,
                 borderBottomWidth: 1,
@@ -82,25 +70,27 @@ export function GameCard({
       >
         <Image source={calendarIcon} />
         <MyText style={styles.infoText}>
-          {leadingZeros(new Date(date).getDay())}{" "}
-          {new Date(date)
+          {leadingZeros(new Date(game.date).getDay())}{" "}
+          {new Date(game.date)
             .toLocaleString("default", { month: "long" })
             .charAt(0)
             .toUpperCase() +
-            new Date(date)
+            new Date(game.date)
               .toLocaleString("default", { month: "long" })
               .slice(1)}
         </MyText>
-        {!team1Score && !team2Score && <Image source={clockIcon} />}
-        {!team1Score && !team2Score && (
+        {!game.team_1_score && !game.team_2_score && (
+          <Image source={clockIcon} />
+        )}
+        {!game.team_1_score && !game.team_2_score && (
           <MyText style={styles.infoText}>
-            {leadingZeros(new Date(date).getHours())}:
-            {leadingZeros(new Date(date).getMinutes())}
+            {leadingZeros(new Date(game.date).getHours())}:
+            {leadingZeros(new Date(game.date).getMinutes())}
           </MyText>
         )}
       </View>
 
-      {!team1Score && !team2Score && (
+      {!game.team_1_score && !game.team_2_score && (
         <View style={styles.amountContainer}>
           <Image source={ticketIcon} />
           <MyText style={styles.amountText}>

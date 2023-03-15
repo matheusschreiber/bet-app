@@ -16,14 +16,12 @@ import ticketIcon from "../../../assets/icons/ticket.png";
 
 import { useEffect, useState } from "react";
 import { leadingZeros } from "../HomeScreenComponents/GameCard";
-import { useNavigation } from "@react-navigation/native";
+import { useContextValue } from "../../services/contextElement";
 
 interface GameCardLargeProps {
   gameProps: GameProps;
-  //TODO: change to bets[]
-  betsResults?: Bet[];
-  parentStyle?: Object;
-  //this parent style is for the selection on new bet screen
+  betsResults?: { bet: Bet }[];
+  parentStyle?: Object; //this parent style is for the selection on new bet screen
 }
 
 export function GameCardLarge({
@@ -33,13 +31,10 @@ export function GameCardLarge({
 }: GameCardLargeProps) {
   const [betsCollapsed, setBetsCollapsed] = useState<boolean>(true);
   const [isResultGame, setIsResultGame] = useState<boolean>(true);
-  const navigation = useNavigation();
+  const { globalUsers } = useContextValue();
 
   useEffect(() => {
-    if (
-      typeof gameProps.team1Score != "undefined" &&
-      typeof gameProps.team2Score != "undefined"
-    )
+    if (gameProps.team_1_score != null && gameProps.team_2_score != null)
       setIsResultGame(true);
     else setIsResultGame(false);
   }, []);
@@ -55,12 +50,12 @@ export function GameCardLarge({
               backgroundColor: THEME.COLORS.LIGHT_BLUE,
             }}
           >
-            {gameProps.team1Icon}
+            {gameProps.team_1_icon}
           </MyText>
           <View style={styles.teamNameContainer}>
-            <MyText style={styles.teamName}>{gameProps.team1}</MyText>
+            <MyText style={styles.teamName}>{gameProps.team_1_name}</MyText>
             {isResultGame && (
-              <MyText style={styles.teamScore}>{gameProps.team1Score}</MyText>
+              <MyText style={styles.teamScore}>{gameProps.team_1_score}</MyText>
             )}
           </View>
         </View>
@@ -75,21 +70,25 @@ export function GameCardLarge({
                 backgroundColor: THEME.COLORS.LIGHT_RED,
               }}
             >
-              {gameProps.team2Icon}
+              {gameProps.team_2_icon}
             </MyText>
             <View style={styles.teamNameContainer}>
-              <MyText style={styles.teamName}>{gameProps.team2}</MyText>
+              <MyText style={styles.teamName}>{gameProps.team_2_name}</MyText>
               {isResultGame && (
-                <MyText style={styles.teamScore}>{gameProps.team2Score}</MyText>
+                <MyText style={styles.teamScore}>
+                  {gameProps.team_2_score}
+                </MyText>
               )}
             </View>
           </View>
         ) : (
           <View style={styles.teamContainer}>
             <View style={styles.teamNameContainer}>
-              <MyText style={styles.teamName}>{gameProps.team2}</MyText>
+              <MyText style={styles.teamName}>{gameProps.team_2_name}</MyText>
               {isResultGame && (
-                <MyText style={styles.teamScore}>{gameProps.team2Score}</MyText>
+                <MyText style={styles.teamScore}>
+                  {gameProps.team_2_score}
+                </MyText>
               )}
             </View>
             <MyText
@@ -98,7 +97,7 @@ export function GameCardLarge({
                 backgroundColor: THEME.COLORS.LIGHT_RED,
               }}
             >
-              {gameProps.team2Icon}
+              {gameProps.team_2_icon}
             </MyText>
           </View>
         )}
@@ -144,41 +143,49 @@ export function GameCardLarge({
                     <MyText style={styles.headerText}>PONTOS</MyText>
                   </View>
                 }
-                renderItem={({ item }) => (
-                  <View style={styles.betContainer}>
-                    <View style={styles.betUserContainer}>
-                      <Image
-                        style={styles.userPhoto}
-                        source={item.user.picture}
-                      />
-                      <MyText>{item.user.name}</MyText>
-                    </View>
-                    {item.result_win ? (
-                      <View style={styles.winIcon}>
-                        <Image style={styles.icon} source={winIcon} />
-                      </View>
-                    ) : (
-                      <View style={styles.loseIcon}>
-                        <Image style={styles.icon} source={loseIcon} />
-                      </View>
-                    )}
+                renderItem={({ item }) => {
+                  const user = globalUsers.find(
+                    (u) => u.user.id == item.bet.id_user
+                  );
 
-                    {item.score_win ? (
-                      <View style={styles.winIcon}>
-                        <Image style={styles.icon} source={winIcon} />
-                      </View>
-                    ) : (
-                      <View style={styles.loseIcon}>
-                        <Image style={styles.icon} source={loseIcon} />
-                      </View>
-                    )}
+                  if (!user) return <></>;
 
-                    <View style={styles.pointsContainer}>
-                      <Image source={starIcon} />
-                      <MyText>{item.points}</MyText>
+                  return (
+                    <View style={styles.betContainer}>
+                      <View style={styles.betUserContainer}>
+                        <Image
+                          style={styles.userPhoto}
+                          source={{ uri: user.user.picture }}
+                        />
+                        <MyText>{user.user.name}</MyText>
+                      </View>
+                      {item.bet.result_win ? (
+                        <View style={styles.winIcon}>
+                          <Image style={styles.icon} source={winIcon} />
+                        </View>
+                      ) : (
+                        <View style={styles.loseIcon}>
+                          <Image style={styles.icon} source={loseIcon} />
+                        </View>
+                      )}
+
+                      {item.bet.score_win ? (
+                        <View style={styles.winIcon}>
+                          <Image style={styles.icon} source={winIcon} />
+                        </View>
+                      ) : (
+                        <View style={styles.loseIcon}>
+                          <Image style={styles.icon} source={loseIcon} />
+                        </View>
+                      )}
+
+                      <View style={styles.pointsContainer}>
+                        <Image source={starIcon} />
+                        <MyText>{item.bet.points}</MyText>
+                      </View>
                     </View>
-                  </View>
-                )}
+                  );
+                }}
               />
             }
           />
@@ -214,7 +221,8 @@ export function GameCardLarge({
           <View style={styles.subtitleContainer}>
             <Image source={ticketIcon} />
             <MyText style={styles.subtitle}>
-              {gameProps.bets?.length} apostas para esse jogo
+              {gameProps.bets ? gameProps.bets?.length : "0"} apostas para esse
+              jogo
             </MyText>
           </View>
         </View>

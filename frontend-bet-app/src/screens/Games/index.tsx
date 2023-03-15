@@ -8,10 +8,11 @@ import { styles } from "./style";
 import { leadingZeros } from "../../components/HomeScreenComponents/GameCard";
 import { useState } from "react";
 import { GameResultsList } from "../../components/GroupScreenComponents/GameResultsList";
-import { GamesFinished, IncomingGames } from "../../services/provisoryData";
 import { Notifications } from "../../components/Notifications";
+import { useContextValue } from "../../services/contextElement";
 
 export function Games() {
+  const { incomingGames, gamesFinished } = useContextValue();
   const [listSelected, setListSelected] = useState<number>(1);
 
   return (
@@ -65,9 +66,9 @@ export function Games() {
         </TouchableOpacity>
       </View>
 
-      {listSelected == 1 && <GameResultsList games={IncomingGames} />}
+      {listSelected == 1 && <GameResultsList games={incomingGames} />}
 
-      {listSelected == 2 && <GameResultsList games={GamesFinished} />}
+      {listSelected == 2 && <GameResultsList games={gamesFinished} />}
 
       <Notifications />
       <HomeBar />

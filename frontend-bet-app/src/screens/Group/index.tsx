@@ -10,14 +10,18 @@ import { MyText } from "../../components/MyText";
 import { useState } from "react";
 import { GameResultsList } from "../../components/GroupScreenComponents/GameResultsList";
 import { PlusButton } from "../../components/GroupScreenComponents/PlusButton";
-import { GamesFinished } from "../../services/provisoryData";
+import { useContextValue } from "../../services/contextElement";
 
 export function Group() {
+  const [listSelected, setListSelected] = useState<number>(1);
   const router = useRoute();
   const group = router.params as GroupProps;
   const navigation = useNavigation();
+  const { gamesFinished } = useContextValue();
 
-  const [listSelected, setListSelected] = useState<number>(1);
+  let participants: string[] = [];
+  group.participants?.map(({ user }) => participants.push(user.id));
+
   return (
     <View style={styles.mainContainer}>
       <PlusButton />
@@ -74,10 +78,16 @@ export function Group() {
       </View>
 
       <View style={{ width: "90%" }}>
-        {listSelected == 1 && <PlayerList participants={group.participants} />}
+        {listSelected == 1 && group.participants != undefined ? (
+          <PlayerList participants={group.participants} />
+        ) : (
+          <></>
+        )}
       </View>
 
-      {listSelected == 2 && <GameResultsList games={GamesFinished} />}
+      {listSelected == 2 && (
+        <GameResultsList games={gamesFinished} participants={participants} />
+      )}
     </View>
   );
 }

@@ -10,7 +10,7 @@ import { useContextValue } from "../../../services/contextElement";
 import { leadingZeros } from "../../HomeScreenComponents/GameCard";
 
 interface PlayerListProps {
-  participants: User[];
+  participants: { user: User }[];
   highlight?: User;
 }
 
@@ -26,36 +26,41 @@ export function PlayerList({ participants, highlight }: PlayerListProps) {
 
       {isNewBetWindowCollapsed && (
         <FlatList
-          data={participants.sort((a, b) => (a.rank > b.rank ? 1 : -1))}
+          data={participants.sort((a, b) =>
+            a.user.rank > b.user.rank ? 1 : -1
+          )}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ width: "100%" }}
           style={styles.flatListContainer}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.user.id}
           ListFooterComponent={<View style={{ height: 500 }} />}
           renderItem={({ item }) => (
             <View
               style={
-                highlight && highlight.id == item.id
+                highlight && highlight.id == item.user.id
                   ? { ...styles.playerContainer, ...styles.highlighted }
                   : { ...styles.playerContainer }
               }
             >
               <View style={styles.namePlayer}>
                 <MyText style={styles.indexPlayer}>
-                  {leadingZeros(item.rank)}
+                  {leadingZeros(participants.indexOf(item) + 1)}
                 </MyText>
-                <Image style={styles.playerPhoto} source={item.picture} />
-                <MyText style={styles.playerName}>{item.name}</MyText>
+                <Image
+                  style={styles.playerPhoto}
+                  source={{ uri: item.user.picture }}
+                />
+                <MyText style={styles.playerName}>{item.user.name}</MyText>
               </View>
               <View style={styles.simpleContainer}>
                 <Image source={ticketIcon} />
-                <MyText style={styles.boldText}>{item.wins}</MyText>
+                <MyText style={styles.boldText}>{item.user.wins}</MyText>
               </View>
 
               <View style={styles.simpleContainer}>
                 <Image source={starIcon} />
                 <MyText style={styles.boldText}>
-                  {item.points.toLocaleString("pt-BR")}
+                  {item.user.points.toLocaleString("pt-BR")}
                 </MyText>
               </View>
             </View>

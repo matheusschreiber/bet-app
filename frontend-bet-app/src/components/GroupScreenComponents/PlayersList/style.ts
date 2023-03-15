@@ -39,8 +39,9 @@ export const styles = StyleSheet.create({
   namePlayer: {
     flexDirection: "row",
     justifyContent: "center",
-    width: "40%",
+    width: "50%",
     alignItems: "center",
+    paddingRight: 10,
     gap: 10,
   },
   playerPhoto: {

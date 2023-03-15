@@ -1,13 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import { View, Image, TouchableOpacity, FlatList } from "react-native";
 import rightArrow from "../../../../assets/icons/right_arrow.png";
-import { GamesFinished, IncomingGames } from "../../../services/provisoryData";
+import { useContextValue } from "../../../services/contextElement";
 import { MyText } from "../../MyText";
 import { GameCard } from "../GameCard";
 import { styles } from "./style";
 
 export function Games() {
   const navigation = useNavigation();
+
+  const { incomingGames, gamesFinished, bets } = useContextValue();
   return (
     <View style={styles.gamesContainer}>
       <View style={styles.upperContainer}>
@@ -26,9 +28,14 @@ export function Games() {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={IncomingGames}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <GameCard {...item} />}
+        data={incomingGames}
+        keyExtractor={(item) => item.match.id}
+        renderItem={({ item }) => (
+          <GameCard
+            game={item.match}
+            bets={bets.filter(({ bet }) => bet.id_match === item.match.id)}
+          />
+        )}
         ListFooterComponent={<View style={{ width: 50 }} />}
       />
 
@@ -48,9 +55,14 @@ export function Games() {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={GamesFinished}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <GameCard {...item} />}
+        data={gamesFinished}
+        keyExtractor={(item) => item.match.id}
+        renderItem={({ item }) => (
+          <GameCard
+            game={item.match}
+            bets={bets.filter(({ bet }) => bet.id_match === item.match.id)}
+          />
+        )}
         ListFooterComponent={<View style={{ width: 50 }} />}
       />
     </View>

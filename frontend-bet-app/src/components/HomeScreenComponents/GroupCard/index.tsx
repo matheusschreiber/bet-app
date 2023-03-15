@@ -9,23 +9,33 @@ import { User } from "../../../@types/navigation";
 import { MyText } from "../../MyText";
 
 interface GroupCard {
+  id: string;
+  idAdmin: string;
   name: string;
-  participants: User[];
+  participants: { user: User }[];
   amount: string;
+  prize: string;
 }
 
-export function GroupCard({ name, participants, amount }: GroupCard) {
+export function GroupCard({
+  id,
+  idAdmin,
+  name,
+  participants,
+  amount,
+  prize,
+}: GroupCard) {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
       onPress={() => {
         navigation.navigate("group", {
-          id: 1,
-          id_admin: 2,
+          id,
+          id_admin: idAdmin,
           name,
           participants,
-          prize: "R$ 500 no pix",
+          prize,
         });
       }}
     >
@@ -48,7 +58,7 @@ export function GroupCard({ name, participants, amount }: GroupCard) {
                 return (
                   <Image
                     key={idx}
-                    source={user.picture}
+                    source={{ uri: user.user.picture }}
                     style={styles.groupImage}
                   />
                 );

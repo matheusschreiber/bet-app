@@ -5,8 +5,11 @@ import ticket from "../../../../assets/icons/ticket_profile.png";
 import star from "../../../../assets/icons/star_profile.png";
 import { MyText } from "../../MyText";
 import { mainUser } from "../../../services/provisoryData";
+import { useContextValue } from "../../../services/contextElement";
 
 export function Statistics() {
+  const { user } = useContextValue();
+
   return (
     <View style={styles.statisticsContainer}>
       <View style={styles.statisticsItem}>
@@ -14,7 +17,7 @@ export function Statistics() {
           <Image source={star} />
         </View>
         <MyText style={styles.title}>
-          {mainUser.points.toLocaleString("pt-BR")}
+          {user.points.toLocaleString("pt-BR")}
         </MyText>
         <MyText style={styles.subtitle}>pontos</MyText>
       </View>
@@ -24,9 +27,9 @@ export function Statistics() {
           <Image source={ticket} />
         </View>
         <MyText style={styles.title}>
-          {mainUser.bets?.length}
-          {mainUser.bets
-            ? mainUser.bets?.length > 1
+          {user.bets?.length}
+          {user.bets
+            ? user.bets?.length > 1
               ? " apostas"
               : " aposta"
             : "0 apostas"}
@@ -38,7 +41,7 @@ export function Statistics() {
         <View style={styles.trophyIcon}>
           <Image source={trophy} />
         </View>
-        <MyText style={styles.title}>{mainUser.wins} vitórias</MyText>
+        <MyText style={styles.title}>{user.wins} vitórias</MyText>
         <MyText style={styles.subtitle}>totais</MyText>
       </View>
     </View>

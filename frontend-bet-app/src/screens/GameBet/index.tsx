@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { GameProps } from "../../@types/navigation";
+import { Bet, GameProps } from "../../@types/navigation";
 import gameBackground from "../../../assets/game_background.png";
 import leftArrow from "../../../assets/icons/left_arrow.png";
 import { styles } from "./style";
@@ -20,7 +20,6 @@ import { useEffect, useState } from "react";
 import { useContextValue } from "../../services/contextElement";
 import { BetPanel } from "../../components/GameBetScreenComponents/BetPanel";
 import { leadingZeros } from "../../components/HomeScreenComponents/GameCard";
-import { mainUser } from "../../services/provisoryData";
 
 import winIcon from "../../../assets/icons/check_green.png";
 import loseIcon from "../../../assets/icons/close_red.png";
@@ -28,13 +27,14 @@ import starIcon from "../../../assets/icons/star_profile.png";
 
 export function GameBet() {
   const router = useRoute();
-  const game = router.params as GameProps;
+  const { game } = router.params as { game: GameProps };
+  const { bets } = router.params as { bets: { bet: Bet }[] };
   const navigation = useNavigation();
-  const { isBetting, setIsBetting } = useContextValue();
+  const { isBetting, setIsBetting, user, globalUsers } = useContextValue();
   const [hasFinished, setHasFinished] = useState<boolean>(false);
 
   useEffect(() => {
-    if (game.team1Score && game.team2Score) setHasFinished(true);
+    if (game.team_1_score || game.team_2_score) setHasFinished(true);
     else setHasFinished(false);
   }, []);
 
@@ -52,15 +52,15 @@ export function GameBet() {
 
       <View style={styles.teamsContainer}>
         <View>
-          <MyText style={styles.iconContainer}>{game.team1Icon}</MyText>
-          <MyText style={styles.teamName}>{game.team1}</MyText>
+          <MyText style={styles.iconContainer}>{game.team_1_icon}</MyText>
+          <MyText style={styles.teamName}>{game.team_1_name}</MyText>
         </View>
 
         <MyText style={styles.vsText}>VS</MyText>
 
         <View>
-          <MyText style={styles.iconContainer}>{game.team2Icon}</MyText>
-          <MyText style={styles.teamName}>{game.team2}</MyText>
+          <MyText style={styles.iconContainer}>{game.team_2_icon}</MyText>
+          <MyText style={styles.teamName}>{game.team_2_name}</MyText>
         </View>
       </View>
 
@@ -92,14 +92,14 @@ export function GameBet() {
         <View style={styles.subtitleContainer}>
           <Image source={ticketIcon} />
           <MyText style={styles.subtitle}>
-            {game.bets?.length} apostas para esse jogo
+            {bets.length} apostas para esse jogo
           </MyText>
         </View>
       </View>
 
       <View style={styles.playersContainer}>
-        {!mainUser.bets ||
-          (!mainUser.bets?.find((bet) => bet.match === game.id) && (
+        {/* {!user.bets ||
+          (!user.bets.find(({ bet }) => bet.id_match === game.id) && (
             <View style={styles.betAreaContainer}>
               <View style={styles.ticketIconBetAreaContainer}>
                 <Image source={ticketLarge} style={styles.ticketIconBetArea} />
@@ -113,15 +113,15 @@ export function GameBet() {
                 </TouchableOpacity>
               </View>
             </View>
-          ))}
+          ))} */}
         <MyText style={styles.playersTitle}>Apostadores</MyText>
         <FlatList
-          data={game.bets}
+          data={bets}
           contentContainerStyle={{ width: "100%", gap: 10 }}
           style={{ width: "100%" }}
           ListHeaderComponent={
             <View style={styles.headerContainer}>
-              {game.bets && game.bets.length > 0 && (
+              {bets && bets.length > 0 && (
                 <MyText style={styles.headerTextName}>NOME</MyText>
               )}
               {hasFinished && (
@@ -131,42 +131,52 @@ export function GameBet() {
               {hasFinished && <MyText style={styles.headerText}>PONTOS</MyText>}
             </View>
           }
-          renderItem={({ item }) => (
-            <View style={styles.betContainer}>
-              <View style={styles.betUserContainer}>
-                <Image style={styles.userPhoto} source={item.user.picture} />
-                <MyText>{item.user.name}</MyText>
-              </View>
-              {hasFinished &&
-                (item.result_win ? (
-                  <View style={styles.winIcon}>
-                    <Image style={styles.icon} source={winIcon} />
-                  </View>
-                ) : (
-                  <View style={styles.loseIcon}>
-                    <Image style={styles.icon} source={loseIcon} />
-                  </View>
-                ))}
-
-              {hasFinished &&
-                (item.score_win ? (
-                  <View style={styles.winIcon}>
-                    <Image style={styles.icon} source={winIcon} />
-                  </View>
-                ) : (
-                  <View style={styles.loseIcon}>
-                    <Image style={styles.icon} source={loseIcon} />
-                  </View>
-                ))}
-
-              {hasFinished && (
-                <View style={styles.pointsContainer}>
-                  <Image source={starIcon} />
-                  <MyText>{item.points}</MyText>
+          ListFooterComponent={<View style={{ height: 500 }} />}
+          renderItem={({ item }) => {
+            const user = globalUsers.find(
+              (g) => g.user.id === item.bet.id_user
+            );
+            if (!user) return <></>;
+            return (
+              <View style={styles.betContainer}>
+                <View style={styles.betUserContainer}>
+                  <Image
+                    style={styles.userPhoto}
+                    source={{ uri: user?.user.picture }}
+                  />
+                  <MyText>{user.user.name}</MyText>
                 </View>
-              )}
-            </View>
-          )}
+                {hasFinished &&
+                  (item.bet.result_win ? (
+                    <View style={styles.winIcon}>
+                      <Image style={styles.icon} source={winIcon} />
+                    </View>
+                  ) : (
+                    <View style={styles.loseIcon}>
+                      <Image style={styles.icon} source={loseIcon} />
+                    </View>
+                  ))}
+
+                {hasFinished &&
+                  (item.bet.score_win ? (
+                    <View style={styles.winIcon}>
+                      <Image style={styles.icon} source={winIcon} />
+                    </View>
+                  ) : (
+                    <View style={styles.loseIcon}>
+                      <Image style={styles.icon} source={loseIcon} />
+                    </View>
+                  ))}
+
+                {hasFinished && (
+                  <View style={styles.pointsContainer}>
+                    <Image source={starIcon} />
+                    <MyText>{item.bet.points}</MyText>
+                  </View>
+                )}
+              </View>
+            );
+          }}
         />
       </View>
     </View>

@@ -32,6 +32,8 @@ export const styles = StyleSheet.create({
     borderRadius: 10000,
     borderColor: THEME.COLORS.SOFT_GREEN,
     borderWidth: 4,
+    height: 120,
+    width: 120,
   },
   profileContainer: {
     justifyContent: "center",
