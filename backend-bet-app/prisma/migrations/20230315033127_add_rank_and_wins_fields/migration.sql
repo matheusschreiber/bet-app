@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN "rank" INTEGER;
+ALTER TABLE "User" ADD COLUMN "wins" INTEGER;
