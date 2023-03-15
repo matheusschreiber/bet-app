@@ -2,12 +2,12 @@ declare module "../routes/app.routes";
 
 export interface GameProps {
   id: string;
-  team1: string;
-  team1Icon: string;
-  team1Score?: number;
-  team2: string;
-  team2Icon: string;
-  team2Score?: number;
+  team_1_name: string;
+  team_1_icon: string;
+  team_1_score?: number;
+  team_2_name: string;
+  team_2_icon: string;
+  team_2_score?: number;
   date: string;
   desc?: string;
   bets?: Bet[];
@@ -16,18 +16,18 @@ export interface GameProps {
 export interface User {
   id: string;
   name: string;
-  picture: ImageData;
+  picture: string;
   wins: number;
   points: number;
   rank: number;
-  myGroups?: GroupProps[];
   bets?: Bet[];
+  groups?: { group: GroupProps }[];
 }
 
 export interface Bet {
   id: string;
-  user: User;
-  match: string;
+  id_user: string;
+  id_match: string;
   status: string;
   score_1: number;
   score_2: number;
@@ -39,9 +39,10 @@ export interface Bet {
 
 export interface GroupProps {
   id: string;
+  id_admin: string;
   name: string;
   prize?: string;
-  participants: User[];
+  participants?: { user: User }[];
 }
 
 export declare global {
@@ -51,7 +52,7 @@ export declare global {
       games: undefined;
       account: undefined;
       rankings: undefined;
-      gamebet: GameProps;
+      gamebet: { game: GameProps; bets: { bet: Bet }[] };
       group: GroupProps;
     }
   }
