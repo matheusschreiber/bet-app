@@ -85,6 +85,7 @@ export class UserService {
             },
           },
         },
+        bets: true,
       },
     });
 

@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateMatchDto {
   @IsNotEmpty()
@@ -14,5 +14,16 @@ export class CreateMatchDto {
   team_2_icon: string;
 
   @IsNotEmpty()
-  match_date: Date;
+  date: Date;
+
+  @IsNotEmpty()
+  desc: string;
+
+  @IsNumber()
+  @IsOptional()
+  team_1_score: number;
+
+  @IsNumber()
+  @IsOptional()
+  team_2_score: number;
 }

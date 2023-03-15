@@ -9,11 +9,10 @@ export class CreateBetDto {
 
   @IsNotEmpty()
   @IsEnum({
-    ongoing: 'ONGOING',
-    won: 'WON',
-    lost: 'LOST',
+    ongoing: 'ongoing',
+    finished: 'finished',
   })
-  status: 'ONGOING' | 'WON' | 'LOST';
+  status: 'ongoing' | 'finished';
 
   @IsNotEmpty()
   @IsNumber()

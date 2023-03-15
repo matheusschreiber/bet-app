@@ -41,13 +41,16 @@ model UserGroup {
 }
 
 model Match {
-  id          String   @id
-  team_1_name String
-  team_1_icon String
-  team_2_name String
-  team_2_icon String
-  match_date  DateTime
-  bets        Bet[]
+  id           String   @id
+  team_1_name  String
+  team_1_icon  String
+  team_1_score Int?
+  team_2_name  String
+  team_2_icon  String
+  team_2_score Int?
+  desc         String
+  date         DateTime
+  bets         Bet[]
 }
 
 model Bet {
