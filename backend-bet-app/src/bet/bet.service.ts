@@ -2,8 +2,8 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateBetDto } from './dto/create-bet.dto';
-import { CreateMatchInput } from './dto/CreateMatchInput';
-import { CreateUserInput } from './dto/CreateUserInput';
+import { CreateMatchInput } from './dto/create-match-input';
+import { CreateUserInput } from './dto/create-user-input';
 import { UpdateBetDto } from './dto/update-bet.dto';
 
 @Injectable()
@@ -39,6 +39,9 @@ export class BetService {
         score_1: createBetDto.score_1,
         score_2: createBetDto.score_2,
         date: createBetDto.date,
+        result_win: createBetDto.result_win,
+        score_win: createBetDto.score_win,
+        points: createBetDto.points,
         user: createUserInput,
         match: createMatchInput,
       },
