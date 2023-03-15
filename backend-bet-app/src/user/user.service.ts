@@ -21,13 +21,72 @@ export class UserService {
   }
 
   async findAll() {
-    const users = await this.prisma.user.findMany();
+    const users = await this.prisma.user.findMany({
+      include: {
+        groups: {
+          select: {
+            group: {
+              select: {
+                name: true,
+                prize: true,
+                id_admin: true,
+                id: true,
+                participants: {
+                  select: {
+                    user: {
+                      select: {
+                        name: true,
+                        picture: true,
+                        id: true,
+                        points: true,
+                        wins: true,
+                        rank: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
 
     return { users };
   }
 
   async findOne(id: string) {
-    const user = await this.prisma.user.findUnique({ where: { id } });
+    const user = await this.prisma.user.findUnique({
+      where: { id },
+      include: {
+        groups: {
+          select: {
+            group: {
+              select: {
+                name: true,
+                prize: true,
+                id_admin: true,
+                id: true,
+                participants: {
+                  select: {
+                    user: {
+                      select: {
+                        name: true,
+                        picture: true,
+                        id: true,
+                        points: true,
+                        wins: true,
+                        rank: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
 
     if (!user) throw new HttpException('USER NOT FOUND', HttpStatus.NOT_FOUND);
 
