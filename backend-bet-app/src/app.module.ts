@@ -4,9 +4,10 @@ import { PrismaService } from './database/prisma.service';
 import { BetModule } from './bet/bet.module';
 import { MatchModule } from './match/match.module';
 import { UserModule } from './user/user.module';
+import { GroupModule } from './group/group.module';
 
 @Module({
-  imports: [BetModule, MatchModule, UserModule],
+  imports: [BetModule, MatchModule, UserModule, GroupModule],
   controllers: [AppController],
   providers: [PrismaService],
 })
