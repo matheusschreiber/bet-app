@@ -6,6 +6,8 @@
 
 This is a **react native** based application to simulate bets and guesses on the world cup tournament.
 
+> Its designed for Android use only.
+
 ## Usage
 
 _video_
