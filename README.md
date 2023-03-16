@@ -1,10 +1,10 @@
-![badge](https://img.shields.io/static/v1?label=Development%20status%20v2.0&message=finished&color=green)
+![badge](https://img.shields.io/static/v1?label=Development%20status%20&message=final%20details&color=green)
 
 # Bet APP - World CUP
 
 ## Description
 
-This is a react native based application to simulate bets and guesses on the world cup tournament.
+This is a **react native** based application to simulate bets and guesses on the world cup tournament.
 
 ## Usage
 
