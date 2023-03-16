@@ -211,6 +211,7 @@ export function ContextProvider({ children }: Props) {
 
   return (
     <>
+      {/* FIXME: value type*/}
       <ContextElement.Provider value={value}>
         {children}
       </ContextElement.Provider>
