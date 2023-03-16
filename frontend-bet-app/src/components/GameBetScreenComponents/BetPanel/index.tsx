@@ -11,16 +11,17 @@ import { GameProps } from "../../../@types/navigation";
 import { useContextValue } from "../../../services/contextElement";
 import { MyText } from "../../MyText";
 import { leadingZeros } from "../../HomeScreenComponents/GameCard";
+import api from "../../../services/api";
 
 export function BetPanel({
-  team1,
-  team2,
-  team1Icon,
-  team2Icon,
+  id,
+  team_1_name,
+  team_2_name,
+  team_1_icon,
+  team_2_icon,
   date,
-  amount,
 }: GameProps) {
-  const { setIsBetting } = useContextValue();
+  const { setIsBetting, bets, user } = useContextValue();
   const [team1Score, setTeam1Score] = useState<number>(0);
   const [team2Score, setTeam2Score] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -35,7 +36,22 @@ export function BetPanel({
 
   async function handleSubmit() {
     setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 3000);
+    const data = {
+      userId: user.id,
+      matchId: id,
+      status: "ongoing",
+      score_1: team1Score,
+      score_2: team2Score,
+      date: new Date(),
+      score_win: false,
+      result_win: false,
+      points: 0,
+    };
+    await api.post("/bet", data);
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsBetting(false);
+    }, 3000);
   }
 
   return (
@@ -53,15 +69,15 @@ export function BetPanel({
 
         <View style={styles.teamsContainer}>
           <View style={styles.teamContainer}>
-            <MyText style={styles.iconContainer}>{team1Icon}</MyText>
-            <MyText style={styles.teamName}>{team1}</MyText>
+            <MyText style={styles.iconContainer}>{team_1_icon}</MyText>
+            <MyText style={styles.teamName}>{team_1_name}</MyText>
           </View>
 
           <MyText style={styles.vsText}>VS</MyText>
 
           <View style={styles.teamContainer}>
-            <MyText style={styles.iconContainer}>{team2Icon}</MyText>
-            <MyText style={styles.teamName}>{team2}</MyText>
+            <MyText style={styles.iconContainer}>{team_2_icon}</MyText>
+            <MyText style={styles.teamName}>{team_2_name}</MyText>
           </View>
         </View>
 
@@ -90,7 +106,10 @@ export function BetPanel({
 
           <View style={styles.subtitleContainer}>
             <Image source={ticketIcon} />
-            <MyText style={styles.subtitle}>{amount}</MyText>
+            <MyText style={styles.subtitle}>
+              {bets.filter(({ bet }) => bet.id_match == id).length} apostas para
+              esse jogo
+            </MyText>
           </View>
         </View>
       </View>
@@ -99,8 +118,8 @@ export function BetPanel({
 
       <View style={styles.betContainer}>
         <View style={styles.betTeamContainer}>
-          <MyText style={styles.betIconContainer}>{team1Icon}</MyText>
-          <MyText style={styles.betTeamName}>{team1}</MyText>
+          <MyText style={styles.betIconContainer}>{team_1_icon}</MyText>
+          <MyText style={styles.betTeamName}>{team_1_name}</MyText>
         </View>
 
         <View style={styles.slidersContainer}>
@@ -120,8 +139,8 @@ export function BetPanel({
 
       <View style={styles.betContainer}>
         <View style={styles.betTeamContainer}>
-          <MyText style={styles.betIconContainer}>{team2Icon}</MyText>
-          <MyText style={styles.betTeamName}>{team2}</MyText>
+          <MyText style={styles.betIconContainer}>{team_2_icon}</MyText>
+          <MyText style={styles.betTeamName}>{team_2_name}</MyText>
         </View>
 
         <View style={styles.slidersContainer}>

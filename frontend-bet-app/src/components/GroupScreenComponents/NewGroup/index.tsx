@@ -1,6 +1,7 @@
 import {
   FlatList,
   Image,
+  ScrollView,
   TextInput,
   TouchableOpacity,
   View,
@@ -14,7 +15,8 @@ import addGreenIcon from "../../../../assets/icons/add_green.png";
 import greenCheckIcon from "../../../../assets/icons/check_green.png";
 import prizeIcon from "../../../../assets/icons/prize.png";
 import { useContextValue } from "../../../services/contextElement";
-import { Contacts } from "../../../services/provisoryData";
+import api from "../../../services/api";
+import { useNavigation } from "@react-navigation/native";
 
 interface NewGroupProps {
   phase?: number;
@@ -22,12 +24,14 @@ interface NewGroupProps {
 
 export function NewGroup({ phase }: NewGroupProps) {
   const [name, setName] = useState<string>("");
+  const [usersInvited, setUsersInvited] = useState<string[]>([]);
+  const [prize, setPrize] = useState<string>("");
+
   const [userSearch, setUserSearch] = useState<string>("");
   const [formPhase, setFormPhase] = useState<number>(phase ? phase : 1);
-  const [usersInvited, setUsersInvited] = useState<string[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
-  const [prize, setPrize] = useState<string>("");
-  const { setIsNewGroupWindowCollapsed } = useContextValue();
+  const { setIsNewGroupWindowCollapsed, user, globalUsers } = useContextValue();
+  const navigation = useNavigation();
 
   function handleInvite(id: string) {
     let aux = [...usersInvited];
@@ -37,8 +41,23 @@ export function NewGroup({ phase }: NewGroupProps) {
     setUsersInvited(aux);
   }
 
+  async function handleSubmit() {
+    try {
+      const response = await api.post("/group", {
+        adminId: user.id,
+        participants: [...usersInvited, user.id],
+        name,
+        prize,
+      });
+
+      navigation.navigate("home");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
-    <View style={styles.mainContainer}>
+    <ScrollView style={styles.mainContainer}>
       <View style={styles.topContainer}>
         <MyText style={styles.containerTitle}>Novo grupo de Aposta</MyText>
         <TouchableOpacity
@@ -89,53 +108,68 @@ export function NewGroup({ phase }: NewGroupProps) {
               Seus contatos do telefone
             </MyText>
 
-            <TouchableOpacity activeOpacity={1}>
-              <FlatList
-                data={Contacts.filter((user) =>
-                  user.name
-                    .toUpperCase()
-                    .trim()
-                    .normalize("NFD")
-                    .replace(/\p{Diacritic}/gu, "")
-                    .includes(
-                      userSearch
-                        .toUpperCase()
-                        .trim()
-                        .normalize("NFD")
-                        .replace(/\p{Diacritic}/gu, "")
-                    )
-                )}
-                extraData={refresh}
-                keyExtractor={(item) => item.id.toString()}
-                contentContainerStyle={{ paddingTop: 20, gap: 10 }}
-                renderItem={({ item }) => (
-                  <View style={styles.userItem}>
-                    <View style={styles.userPhotoAndNameContainer}>
-                      <Image style={styles.userPhoto} source={item.picture} />
-                      <MyText style={styles.userName}>{item.name}</MyText>
-                    </View>
-                    <TouchableOpacity onPress={() => handleInvite(item.id)}>
-                      <View style={styles.iconContainer}>
-                        {!usersInvited.includes(item.id) ? (
-                          <Image
-                            style={styles.inviteIcon}
-                            source={addGreenIcon}
-                          />
-                        ) : (
-                          <Image
-                            style={styles.checkIcon}
-                            source={greenCheckIcon}
-                          />
-                        )}
+            <FlatList
+              data={[]}
+              renderItem={() => <></>}
+              horizontal={true}
+              ListEmptyComponent={() => (
+                <FlatList
+                  data={globalUsers.filter(({ user }) =>
+                    user.name
+                      .toUpperCase()
+                      .trim()
+                      .normalize("NFD")
+                      .replace(/\p{Diacritic}/gu, "")
+                      .includes(
+                        userSearch
+                          .toUpperCase()
+                          .trim()
+                          .normalize("NFD")
+                          .replace(/\p{Diacritic}/gu, "")
+                      )
+                  )}
+                  extraData={refresh}
+                  keyExtractor={(item) => item.user.id}
+                  contentContainerStyle={{
+                    paddingTop: 20,
+                    gap: 10,
+                  }}
+                  renderItem={({ item }) => (
+                    <View style={styles.userItem}>
+                      <View style={styles.userPhotoAndNameContainer}>
+                        <Image
+                          style={styles.userPhoto}
+                          source={{ uri: item.user.picture }}
+                        />
+                        <MyText style={styles.userName}>
+                          {item.user.name}
+                        </MyText>
                       </View>
-                    </TouchableOpacity>
-                  </View>
-                )}
-              />
-            </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => handleInvite(item.user.id)}
+                      >
+                        <View style={styles.iconContainer}>
+                          {!usersInvited.includes(item.user.id) ? (
+                            <Image
+                              style={styles.inviteIcon}
+                              source={addGreenIcon}
+                            />
+                          ) : (
+                            <Image
+                              style={styles.checkIcon}
+                              source={greenCheckIcon}
+                            />
+                          )}
+                        </View>
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                />
+              )}
+            />
           </View>
 
-          <View style={styles.buttonContainer}>
+          <View style={{ ...styles.buttonContainer, marginBottom: 200 }}>
             <TouchableOpacity
               onPress={() => {
                 if (!phase) setFormPhase(3);
@@ -161,11 +195,19 @@ export function NewGroup({ phase }: NewGroupProps) {
           />
 
           <View style={styles.buttonContainerFinalPhase}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                setFormPhase(1);
+                setUsersInvited([]);
+                setName("");
+                setPrize("");
+                setIsNewGroupWindowCollapsed(true);
+              }}
+            >
               <MyText style={styles.buttonTextCancel}>Cancelar</MyText>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleSubmit}>
               <MyText style={styles.buttonText}>Finalizar</MyText>
             </TouchableOpacity>
           </View>
@@ -173,6 +215,6 @@ export function NewGroup({ phase }: NewGroupProps) {
       ) : (
         <></>
       )}
-    </View>
+    </ScrollView>
   );
 }

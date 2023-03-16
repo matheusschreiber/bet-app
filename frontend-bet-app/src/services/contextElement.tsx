@@ -197,6 +197,8 @@ export function ContextProvider({ children }: Props) {
     setGlobalUsers,
     incomingGames,
     gamesFinished,
+    setIncomingGames,
+    setGamesFinished,
     bets,
     setBets,
   };

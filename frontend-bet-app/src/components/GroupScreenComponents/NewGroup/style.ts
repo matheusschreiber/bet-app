@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     width: "100%",
     height: "100%",
+    zIndex: 3000,
   },
   topContainer: {
     backgroundColor: "black",
@@ -39,7 +40,7 @@ export const styles = StyleSheet.create({
     fontFamily: "montserratBold",
   },
   formContainer: {
-    width: 400,
+    width: "100%",
     alignItems: "center",
     justifyContent: "flex-start",
     marginTop: 50,

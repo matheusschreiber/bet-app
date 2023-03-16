@@ -14,29 +14,20 @@ import { styles } from "./style";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useContextValue } from "../../../services/contextElement";
-import { IncomingGames } from "../../../services/provisoryData";
 
 export function NewBet() {
   const [gameSelected, setGameSelected] = useState<string>("1");
-  const { setIsNewBetWindowCollapsed } = useContextValue();
+  const { setIsNewBetWindowCollapsed, incomingGames, bets } = useContextValue();
   const navigation = useNavigation();
 
   function handleNewBet() {
-    const game = IncomingGames.find(
-      (game) => game.id.toString() == gameSelected
-    );
+    const game = incomingGames.find((game) => game.match.id == gameSelected);
 
     if (!game) return;
 
     navigation.navigate("gamebet", {
-      id: game.id,
-      team1: game.team1,
-      team1Icon: game.team1Icon,
-      team2: game.team2,
-      team2Icon: game.team2Icon,
-      date: game.date,
-      amount: game.amount,
-      desc: game.desc,
+      game: game.match,
+      bets: bets.filter((bet) => bet.bet.id_match == game.match.id),
     });
   }
 
@@ -54,8 +45,8 @@ export function NewBet() {
         </View>
 
         <FlatList
-          data={IncomingGames}
-          keyExtractor={(item) => item.id.toString()}
+          data={incomingGames}
+          keyExtractor={(item) => item.match.id.toString()}
           ListFooterComponent={<View style={{ height: 200 }} />}
           contentContainerStyle={{
             alignItems: "center",
@@ -64,13 +55,15 @@ export function NewBet() {
           }}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={() => setGameSelected(item.id)}
+              onPress={() => setGameSelected(item.match.id)}
               activeOpacity={0.9}
             >
               <GameCardLarge
-                gameProps={item}
+                gameProps={item.match}
                 parentStyle={
-                  gameSelected === item.id ? styles.gameCardSelected : undefined
+                  gameSelected === item.match.id
+                    ? styles.gameCardSelected
+                    : undefined
                 }
               />
             </TouchableOpacity>

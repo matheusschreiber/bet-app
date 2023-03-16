@@ -98,8 +98,10 @@ export function GameBet() {
       </View>
 
       <View style={styles.playersContainer}>
-        {/* {!user.bets ||
-          (!user.bets.find(({ bet }) => bet.id_match === game.id) && (
+        {!bets.find(
+          ({ bet }) => bet.id_match === game.id && bet.id_user == user.id
+        ) &&
+          !hasFinished && (
             <View style={styles.betAreaContainer}>
               <View style={styles.ticketIconBetAreaContainer}>
                 <Image source={ticketLarge} style={styles.ticketIconBetArea} />
@@ -113,15 +115,22 @@ export function GameBet() {
                 </TouchableOpacity>
               </View>
             </View>
-          ))} */}
-        <MyText style={styles.playersTitle}>Apostadores</MyText>
+          )}
+        <MyText style={styles.playersTitle}>Apostas</MyText>
         <FlatList
-          data={bets}
+          data={bets.sort((a, b) =>
+            typeof a.bet.points == "undefined" ||
+            typeof b.bet.points == "undefined"
+              ? 0
+              : a.bet.points < b.bet.points
+              ? 1
+              : -1
+          )}
           contentContainerStyle={{ width: "100%", gap: 10 }}
           style={{ width: "100%" }}
           ListHeaderComponent={
             <View style={styles.headerContainer}>
-              {bets && bets.length > 0 && (
+              {bets && bets.length > 0 && hasFinished && (
                 <MyText style={styles.headerTextName}>NOME</MyText>
               )}
               {hasFinished && (
@@ -144,7 +153,11 @@ export function GameBet() {
                     style={styles.userPhoto}
                     source={{ uri: user?.user.picture }}
                   />
-                  <MyText>{user.user.name}</MyText>
+                  <MyText
+                    style={hasFinished ? { width: "60%" } : { width: 200 }}
+                  >
+                    {user.user.name}
+                  </MyText>
                 </View>
                 {hasFinished &&
                   (item.bet.result_win ? (
