@@ -1,6 +1,6 @@
 ![badge](https://img.shields.io/static/v1?label=Development%20status%20&message=final%20details&color=green)
 
-# Bet APP - World CUP
+# App - World CUP ⚽
 
 ## Description
 
