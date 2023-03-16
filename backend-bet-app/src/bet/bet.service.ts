@@ -99,4 +99,47 @@ export class BetService {
 
     return { bet };
   }
+
+  async updatePoints() {
+    const bets = await this.prisma.bet.findMany();
+    const users = await this.prisma.user.findMany();
+
+    const newUsers = [...users];
+
+    newUsers.map((user) => {
+      user.points = 0;
+      user.wins = 0;
+    });
+
+    bets.map((bet) => {
+      if (bet.status != 'ongoing') {
+        const found = users.find((user) => bet.id_user == user.id);
+        if (found) {
+          if (bet.result_win || bet.score_win) found.wins += 1;
+
+          found.points += bet.points;
+        }
+      }
+    });
+
+    newUsers.sort((a, b) => (a.points < b.points ? 1 : -1));
+    newUsers.map((user, idx) => {
+      user.rank = idx + 1;
+    });
+
+    await this.prisma.$transaction(
+      newUsers.map((user) => {
+        return this.prisma.user.update({
+          where: { id: user.id },
+          data: {
+            points: user.points,
+            wins: user.wins,
+            rank: user.rank,
+          },
+        });
+      }),
+    );
+
+    return { newUsers };
+  }
 }

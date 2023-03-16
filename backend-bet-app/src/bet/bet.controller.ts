@@ -30,6 +30,11 @@ export class BetController {
     return this.betService.findOne(id);
   }
 
+  @Post('points')
+  updatePoints() {
+    return this.betService.updatePoints();
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateBetDto: UpdateBetDto) {
     return this.betService.update(id, updateBetDto);
