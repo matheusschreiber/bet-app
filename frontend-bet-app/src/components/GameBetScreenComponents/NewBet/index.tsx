@@ -65,6 +65,9 @@ export function NewBet() {
                     ? styles.gameCardSelected
                     : undefined
                 }
+                betsResults={bets.filter(
+                  ({ bet }) => bet.id_match == item.match.id
+                )}
               />
             </TouchableOpacity>
           )}

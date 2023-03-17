@@ -103,7 +103,7 @@ export function NewGroup({ phase }: NewGroupProps) {
             />
           </View>
 
-          <View style={styles.userListContainer}>
+          <TouchableOpacity activeOpacity={1} style={styles.userListContainer}>
             <MyText style={styles.userListTitle}>
               Seus contatos do telefone
             </MyText>
@@ -167,7 +167,7 @@ export function NewGroup({ phase }: NewGroupProps) {
                 />
               )}
             />
-          </View>
+          </TouchableOpacity>
 
           <View style={{ ...styles.buttonContainer, marginBottom: 200 }}>
             <TouchableOpacity

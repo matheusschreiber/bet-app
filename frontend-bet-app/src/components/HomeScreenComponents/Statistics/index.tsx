@@ -4,12 +4,11 @@ import trophy from "../../../../assets/icons/trophy_profile.png";
 import ticket from "../../../../assets/icons/ticket_profile.png";
 import star from "../../../../assets/icons/star_profile.png";
 import { MyText } from "../../MyText";
-import { mainUser } from "../../../services/provisoryData";
 import { useContextValue } from "../../../services/contextElement";
 
 export function Statistics() {
   const { user } = useContextValue();
-
+  const goingBets = user.bets.filter((bet) => bet.status === "ongoing");
   return (
     <View style={styles.statisticsContainer}>
       <View style={styles.statisticsItem}>
@@ -27,9 +26,9 @@ export function Statistics() {
           <Image source={ticket} />
         </View>
         <MyText style={styles.title}>
-          {user.bets?.length}
-          {user.bets
-            ? user.bets?.length > 1
+          {goingBets?.length}
+          {goingBets
+            ? goingBets?.length > 1
               ? " apostas"
               : " aposta"
             : "0 apostas"}

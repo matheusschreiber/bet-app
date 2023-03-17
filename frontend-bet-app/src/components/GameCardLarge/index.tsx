@@ -221,8 +221,7 @@ export function GameCardLarge({
           <View style={styles.subtitleContainer}>
             <Image source={ticketIcon} />
             <MyText style={styles.subtitle}>
-              {gameProps.bets ? gameProps.bets?.length : "0"} apostas para esse
-              jogo
+              {betsResults ? betsResults.length : "0"} apostas para esse jogo
             </MyText>
           </View>
         </View>

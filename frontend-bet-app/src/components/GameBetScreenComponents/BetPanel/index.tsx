@@ -7,11 +7,12 @@ import ticketIcon from "../../../../assets/icons/ticket.png";
 import clockIcon from "../../../../assets/icons/clock.png";
 import closeIcon from "../../../../assets/icons/close.png";
 import { useState } from "react";
-import { GameProps } from "../../../@types/navigation";
+import { Bet, GameProps } from "../../../@types/navigation";
 import { useContextValue } from "../../../services/contextElement";
 import { MyText } from "../../MyText";
 import { leadingZeros } from "../../HomeScreenComponents/GameCard";
 import api from "../../../services/api";
+import { useNavigation } from "@react-navigation/native";
 
 export function BetPanel({
   id,
@@ -21,10 +22,11 @@ export function BetPanel({
   team_2_icon,
   date,
 }: GameProps) {
-  const { setIsBetting, bets, user } = useContextValue();
+  const { setIsBetting, setBets, bets, user } = useContextValue();
   const [team1Score, setTeam1Score] = useState<number>(0);
   const [team2Score, setTeam2Score] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigation = useNavigation();
 
   function handleSubtract(value: number, setFunc: Function) {
     if (value > 0) setFunc(value - 1);
@@ -32,6 +34,34 @@ export function BetPanel({
 
   function handleAdd(value: number, setFunc: Function) {
     setFunc(value + 1);
+  }
+
+  async function fetchBets() {
+    try {
+      const response = await api.get("/bet");
+
+      let aux: { bet: Bet }[] = [];
+      response.data.bets.map((bet: Bet) => {
+        aux.push({ bet: { ...bet } });
+      });
+      setBets(aux);
+      setIsLoading(false);
+      setIsBetting(false);
+
+      navigation.navigate("gamebet", {
+        game: {
+          id,
+          team_1_name,
+          team_2_name,
+          team_1_icon,
+          team_2_icon,
+          date,
+        },
+        bets: aux.filter(({ bet }) => bet.id_match == id),
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function handleSubmit() {
@@ -48,10 +78,7 @@ export function BetPanel({
       points: 0,
     };
     await api.post("/bet", data);
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsBetting(false);
-    }, 3000);
+    fetchBets();
   }
 
   return (
