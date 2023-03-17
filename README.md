@@ -14,11 +14,57 @@ _video_
 
 ## App pictures
 
-_photos_
+<table>
+  <tr>
+  <td width="400">
+    <center>
+    <img src="./media/1.png" />
+    </br>Track your progress
+    </center>
+  </td>
+  <td width="400">
+    <center>
+    <img src="./media/2.png"/>
+    </br>Create groups
+    </center>
+  </td>
+  </tr>
+
+  <tr>
+  <td width="400">
+    <center>
+    <img src="./media/3.png"/>
+    </br>See the bets results of your friends
+    </center>
+  </td>
+  <td width="400">
+    <center>
+    <img src="./media/4.png"/>
+    </br>Go for the top spot!
+    </center>
+  </td>
+  </tr>
+
+  <tr>
+  <td width="400">
+    <center>
+    <img src="./media/5.png"/>
+    </br>Track the results of games and plan your next moves!
+    </center>
+  </td>
+  <td width="400">
+    <center>
+    <img src="./media/6.png"/>
+    </br>Info and settings available
+    </center>
+  </td>
+  </tr>
+
+</table>
 
 <!-- ![picture 1](./screenshots/pic1_v2.0.png)   -->
 
-## Features
+# Features
 
 - Rank system
 - You can manage your own groups
