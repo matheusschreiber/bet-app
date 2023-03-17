@@ -8,9 +8,11 @@ This is a **react native** based application to simulate bets and guesses on the
 
 > Its designed for Android use only.
 
+> The UI is in Brazilian Portuguese 🇧🇷
+
 ## Usage
 
-_video_
+https://user-images.githubusercontent.com/87976167/225797798-2a22db56-4793-41ab-8f06-bfe54422e1a1.mp4
 
 ## App pictures
 
