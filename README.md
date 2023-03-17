@@ -2,7 +2,9 @@
 
 # App - World CUP ⚽
 
-## Description
+![Cover image](media/main.png)
+
+# Description
 
 This is a **react native** based application to simulate bets and guesses on the world cup tournament.
 
